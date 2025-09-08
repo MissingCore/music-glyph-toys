@@ -1,0 +1,28 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "main": "index",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "android:prod": "expo run:android --variant release",
+    "ios": "expo run:ios"
+  },
+  "dependencies": {
+    "@missingcore/music-glyph-toys": "workspace:*",
+    "expo": "~53.0.22",
+    "expo-build-properties": "~0.14.8",
+    "expo-file-system": "~18.1.11",
+    "expo-status-bar": "~2.2.3",
+    "react": "19.0.0",
+    "react-native": "~0.79.6",
+    "react-native-safe-area-context": "^5.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@types/react": "^19.0.14",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "typescript": "^5.9.2"
+  }
+}
