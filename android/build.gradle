@@ -115,6 +115,7 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation(files("libs/glyph-matrix-sdk-1.0.aar"))
 }
 
 if (isNewArchitectureEnabled()) {

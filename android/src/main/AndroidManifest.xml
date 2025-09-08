@@ -1,3 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cyanchill.missingcore.music.toys">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.cyanchill.missingcore.music.toys">
+  <!-- To allow us to load the package on older Android versions (even if it's not being used). -->
+  <uses-sdk android:minSdkVersion="24" tools:overrideLibrary="com.nothing.ketchum"/>
 </manifest>
