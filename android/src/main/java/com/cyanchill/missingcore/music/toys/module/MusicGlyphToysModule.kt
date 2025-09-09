@@ -3,7 +3,6 @@ package com.cyanchill.missingcore.music.toys.module
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Arguments
-import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.Promise
 
 import android.os.Build
@@ -35,12 +34,6 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
       promise.resolve(true)
     } else {
       promise.resolve(false)
-    }
-  }
-
-  @ReactMethod
-  override fun setPlaybackHandlers(playPauseCB: Callback, skipCB: Callback) {
-    if (ValidationUtils.isDeviceSupported()) {
     }
   }
 
