@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import {
   getDeviceInfo,
+  isDeviceSupported,
   setPlaybackHandlers,
 } from '@missingcore/music-glyph-toys';
 
@@ -26,6 +27,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Model: {result.model}</Text>
       <Text>Manufacturer: {result.manufacturer}</Text>
+      <Text>Device Supports Glyph Toys: {String(isDeviceSupported)}</Text>
     </View>
   );
 }

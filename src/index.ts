@@ -17,3 +17,7 @@ export function setPlaybackHandlers(callbacks: {
     callbacks.onSkip
   );
 }
+
+const { isDeviceSupported } = MusicGlyphToys.getConstants();
+
+export { isDeviceSupported };

@@ -15,6 +15,12 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
   MusicGlyphToysSpec(reactContext) {
   private val context = reactContext
 
+  override fun getTypedExportedConstants(): Map<String, Any?> {
+    val constants = HashMap<String, Any?>()
+    constants["isDeviceSupported"] = ValidationUtils.isDeviceSupported()
+    return constants
+  }
+
   @ReactMethod
   override fun getDeviceInfo(promise: Promise) {
     val deviceInfoMap = Arguments.createMap()

@@ -7,6 +7,11 @@ import com.facebook.react.bridge.Promise
 
 abstract class MusicGlyphToysSpec internal constructor(context: ReactApplicationContext) :
   ReactContextBaseJavaModule(context) {
+  abstract fun getTypedExportedConstants(): Map<String, Any?>
+
+  override fun getConstants(): Map<String, Any?> {
+    return getTypedExportedConstants()
+  }
 
   abstract fun getDeviceInfo(promise: Promise)
 
