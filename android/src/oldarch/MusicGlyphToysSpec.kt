@@ -15,4 +15,6 @@ abstract class MusicGlyphToysSpec internal constructor(context: ReactApplication
   abstract fun getDeviceInfo(promise: Promise)
 
   abstract fun setMatrixArtwork(uri: String, promise: Promise)
+
+  abstract fun testEvent(event: String)
 }

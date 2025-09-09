@@ -38,6 +38,16 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
     }
   }
 
+  @ReactMethod
+  /** Help test whether the events are fired correctly. */
+  override fun testEvent(event: String) {
+    val glyphEvent = GlyphButtonEvent.fromCode(event)
+    if (glyphEvent != null) {
+      val matrixEventInstance = MatrixEvents(context)
+      matrixEventInstance.emit(glyphEvent, "test")
+    }
+  }
+
   companion object {
     const val NAME = "MusicGlyphToys"
   }

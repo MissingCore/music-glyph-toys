@@ -9,6 +9,8 @@ export interface Spec extends TurboModule {
   getDeviceInfo(): Promise<{ model: string; manufacturer: string }>;
 
   setMatrixArtwork(uri: String): Promise<boolean>;
+
+  testEvent(event: String): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('MusicGlyphToys');
