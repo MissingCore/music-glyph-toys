@@ -1,13 +1,25 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-import { getDeviceInfo } from '@missingcore/music-glyph-toys';
+import {
+  getDeviceInfo,
+  setPlaybackHandlers,
+} from '@missingcore/music-glyph-toys';
+
+const onPlayPause = () => {
+  console.log('Play/Pause callback function called.');
+};
+
+const onSkip = () => {
+  console.log('Skip callback function called.');
+};
 
 export default function App() {
   const [result, setResult] = useState<Record<string, string>>({});
 
   useEffect(() => {
     getDeviceInfo().then(setResult);
+    setPlaybackHandlers({ onPlayPause, onSkip });
   }, []);
 
   return (

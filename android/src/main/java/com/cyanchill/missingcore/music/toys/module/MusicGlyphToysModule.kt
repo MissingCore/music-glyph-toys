@@ -3,11 +3,13 @@ package com.cyanchill.missingcore.music.toys.module
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.Promise
 
 import android.os.Build
 
 import com.cyanchill.missingcore.music.toys.MusicGlyphToysSpec
+import com.cyanchill.missingcore.music.toys.utils.ValidationUtils
 
 class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationContext) :
   MusicGlyphToysSpec(reactContext) {
@@ -19,6 +21,21 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
     deviceInfoMap.putString("model", Build.MODEL)
     deviceInfoMap.putString("manufacturer", Build.MANUFACTURER)
     promise.resolve(deviceInfoMap)
+  }
+
+  @ReactMethod
+  override fun setMatrixArtwork(uri: String, promise: Promise) {
+    if (ValidationUtils.isDeviceSupported()) {
+      promise.resolve(true)
+    } else {
+      promise.resolve(false)
+    }
+  }
+
+  @ReactMethod
+  override fun setPlaybackHandlers(playPauseCB: Callback, skipCB: Callback) {
+    if (ValidationUtils.isDeviceSupported()) {
+    }
   }
 
   companion object {
