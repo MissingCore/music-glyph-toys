@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from '@missingcore/music-glyph-toys';
+
+import { getDeviceInfo } from '@missingcore/music-glyph-toys';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+  const [result, setResult] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    multiply(3, 7).then(setResult);
+    getDeviceInfo().then(setResult);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Model: {result.model}</Text>
+      <Text>Manufacturer: {result.manufacturer}</Text>
     </View>
   );
 }
