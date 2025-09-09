@@ -31,6 +31,7 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
   @ReactMethod
   override fun setMatrixArtwork(uri: String, promise: Promise) {
     if (ValidationUtils.isDeviceSupported()) {
+      TODO("Not yet implemented - wait for after getting primary functionality working.")
       promise.resolve(true)
     } else {
       promise.resolve(false)
