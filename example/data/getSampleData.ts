@@ -7,13 +7,13 @@ import {
 import { Directory, File } from 'expo-file-system/next';
 import { getAssetsAsync } from 'expo-media-library';
 
-import { ImageDirectory } from '../lib/file-system';
+import { ImageDirectory } from '../utils/file-system';
 import { isFulfilled } from '../utils/promise';
 import { removeFileExtension } from '../utils/string';
 
 /** Save a small fraction of the user's library. */
 export async function getSampleData() {
-  const { assets } = await getAssetsAsync({ first: 10, mediaType: 'audio' });
+  const { assets } = await getAssetsAsync({ first: 20, mediaType: 'audio' });
 
   const metadataInfo = await Promise.allSettled(
     assets.map(async ({ id, uri, duration, filename }) => {

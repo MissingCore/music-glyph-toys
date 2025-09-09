@@ -7,3 +7,11 @@ export const isFulfilled = <T>(
 export const isRejected = (
   input: PromiseSettledResult<unknown>
 ): input is PromiseRejectedResult => input.status === 'rejected';
+
+/**
+ * Asynchronously pause logic for the specified amount of time. Useful to
+ * prevent code blocking due to an async task.
+ */
+export async function wait(durationMs: number) {
+  await new Promise<void>((resolve) => setTimeout(resolve, durationMs));
+}

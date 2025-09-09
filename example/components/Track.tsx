@@ -1,12 +1,18 @@
 import type { AddTrack } from '@weights-ai/react-native-track-player';
 import { Image } from 'expo-image';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, View } from 'react-native';
 
 import { Text } from './UI';
 
-export function Track(props: AddTrack) {
+export function Track(props: AddTrack & { onPlay: () => void }) {
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={props.onPlay}
+      style={({ pressed }) => [
+        styles.container,
+        pressed && styles.containerPressed,
+      ]}
+    >
       <Image source={props.artwork} style={styles.image} />
       <View style={styles.stack}>
         <Text numberOfLines={1} style={styles.title}>
@@ -16,7 +22,7 @@ export function Track(props: AddTrack) {
           {props.artist ?? '—'}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -24,9 +30,14 @@ const styles = StyleSheet.create({
   container: {
     minHeight: 48,
     maxWidth: Dimensions.get('screen').width - 32,
+    paddingRight: 4,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    borderRadius: 8,
+  },
+  containerPressed: {
+    backgroundColor: '#CCCCCC40',
   },
   stack: {
     flexShrink: 1,

@@ -64,6 +64,9 @@ importers:
 
   example:
     dependencies:
+      '@expo/vector-icons':
+        specifier: ^15.0.2
+        version: 15.0.2(expo-font@13.3.2(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
       '@missingcore/music-glyph-toys':
         specifier: workspace:*
         version: link:..
@@ -944,6 +947,13 @@ packages:
     resolution: {integrity: sha512-7T09UE9h8QDTsUeMGymB4i+iqvtEeaO5VvUjryFB4tugDTG/bkzViWA74hm5pfjjDEhYMXWaX112mcvhccmIwQ==}
     peerDependencies:
       expo-font: '*'
+      react: '*'
+      react-native: '*'
+
+  '@expo/vector-icons@15.0.2':
+    resolution: {integrity: sha512-IiBjg7ZikueuHNf40wSGCf0zS73a3guJLdZzKnDUxsauB8VWPLMeWnRIupc+7cFhLUkqyvyo0jLNlcxG5xPOuQ==}
+    peerDependencies:
+      expo-font: '>=14.0.4'
       react: '*'
       react-native: '*'
 
@@ -6595,6 +6605,12 @@ snapshots:
   '@expo/sudo-prompt@9.3.2': {}
 
   '@expo/vector-icons@14.1.0(expo-font@13.3.2(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      expo-font: 13.3.2(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+      react-native: 0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0)
+
+  '@expo/vector-icons@15.0.2(expo-font@13.3.2(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)':
     dependencies:
       expo-font: 13.3.2(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0)
       react: 19.0.0

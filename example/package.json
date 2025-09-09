@@ -10,6 +10,7 @@
     "ios": "expo run:ios"
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
     "@missingcore/music-glyph-toys": "workspace:*",
     "@missingcore/react-native-metadata-retriever": "2.0.0-beta.2",
     "@react-native-async-storage/async-storage": "^2.2.0",

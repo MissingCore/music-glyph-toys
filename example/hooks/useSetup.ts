@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { dataStore, useDataStore } from '../services/DataStore';
 import { getSampleData } from '../data/getSampleData';
 
-import { createImageDirectory } from '../lib/file-system';
+import { createImageDirectory } from '../utils/file-system';
+import { setupPlayer } from '../utils/react-native-track-player';
 
 export function useSetup() {
   const [permissionResponse, requestPermission] = usePermissions({
@@ -20,6 +21,8 @@ export function useSetup() {
         const { canAskAgain, status } = await requestPermission();
         if (canAskAgain || status === 'denied') return;
       } else {
+        await setupPlayer();
+
         // Start getting data after we have media library permissions.
         await dataStore.persist.rehydrate();
         createImageDirectory();

@@ -8,6 +8,7 @@ import {
 import { useSetup } from './hooks/useSetup';
 
 import { DeviceInfo } from './components/DeviceInfo';
+import { MediaControls } from './components/MediaControls';
 import { TrackList } from './components/TrackList';
 
 export default function RootLayer() {
@@ -35,6 +36,7 @@ function App() {
     <>
       <DeviceInfo />
       <TrackList />
+      <MediaControls />
     </>
   );
 }
