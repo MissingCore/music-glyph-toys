@@ -7,6 +7,7 @@ import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.module.model.ReactModuleInfo
 import java.util.HashMap
 
+import com.cyanchill.missingcore.music.toys.module.MusicGlyphToysModule
 
 class MusicGlyphToysPackage : BaseReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
