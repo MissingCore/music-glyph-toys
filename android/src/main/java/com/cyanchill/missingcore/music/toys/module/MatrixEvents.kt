@@ -5,7 +5,7 @@ import com.facebook.react.bridge.ReactContext
 import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
 
 class MatrixEvents(private val reactContext: ReactContext) {
-  fun emit(event: GlyphButtonEvent, tag: String) {
+  fun sendEvent(event: GlyphButtonEvent, tag: String) {
     val payload = Arguments.createMap()
     payload.putString("tag", tag)
     reactContext.getJSModule(RCTDeviceEventEmitter::class.java).emit(event.code, payload)

@@ -16,5 +16,11 @@ abstract class MusicGlyphToysSpec internal constructor(context: ReactApplication
 
   abstract fun setMatrixArtwork(uri: String, promise: Promise)
 
+  //#region [Events]
   abstract fun testEvent(event: String)
+
+  // Below functions are required for RN built-in NativeEventEmitter calls.
+  abstract fun addListener(eventName: String?)
+  abstract fun removeListeners(count: Double)
+  //#endregion
 }

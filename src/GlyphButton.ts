@@ -1,10 +1,10 @@
-import { DeviceEventEmitter } from 'react-native';
+import { NativeEventEmitter } from 'react-native';
 
 import MusicGlyphToys from './MusicGlyphToys';
 import type { Event, EventPayloadByEvent } from './constants/Event';
 
 //#region Events
-const emitter = DeviceEventEmitter;
+const emitter = new NativeEventEmitter(MusicGlyphToys);
 
 export function addEventListener<T extends Event>(
   event: T,

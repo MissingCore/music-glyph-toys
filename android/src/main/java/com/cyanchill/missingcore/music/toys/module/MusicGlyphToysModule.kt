@@ -38,15 +38,27 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
     }
   }
 
+  //#region [Events]
   @ReactMethod
   /** Help test whether the events are fired correctly. */
   override fun testEvent(event: String) {
     val glyphEvent = GlyphButtonEvent.fromCode(event)
     if (glyphEvent != null) {
       val matrixEventInstance = MatrixEvents(context)
-      matrixEventInstance.emit(glyphEvent, "test")
+      matrixEventInstance.sendEvent(glyphEvent, "test")
     }
   }
+
+  @ReactMethod
+  override fun addListener(eventName: String?) {
+    // Keep: Required for RN built-in NativeEventEmitter calls.
+  }
+
+  @ReactMethod
+  override fun removeListeners(count: Double) {
+    // Keep: Required for RN built-in NativeEventEmitter calls.
+  }
+  //#endregion
 
   companion object {
     const val NAME = "MusicGlyphToys"
