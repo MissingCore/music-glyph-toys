@@ -1,0 +1,5 @@
+<resources>
+  <string name="toy_name_music_artwork">🧪 Music Artwork</string>
+  <string name="toy_summary_music_artwork">[🧪 Experimental] Play/Pause/Skip tracks played through
+    the MissingCore Music app.</string>
+</resources>
