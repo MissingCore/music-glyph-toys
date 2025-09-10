@@ -1,5 +1,6 @@
 import {
   GlyphButton,
+  Action,
   Event as GlyphButtonEvent,
 } from '@missingcore/music-glyph-toys';
 import TrackPlayer, { Event } from '@weights-ai/react-native-track-player';
@@ -9,15 +10,17 @@ import { MusicControls } from './MusicControls';
 
 /** How we handle the actions in the media control notification. */
 export async function PlaybackService() {
-  GlyphButton.addEventListener(GlyphButtonEvent.LONG_PRESS, async ({ tag }) => {
-    console.log(`${GlyphButtonEvent.LONG_PRESS} event triggered by: ${tag}`);
-    if (tag !== 'test') await MusicControls.next();
-  });
+  GlyphButton.addEventListener(
+    GlyphButtonEvent.TOUCH_UP,
+    async ({ tag, action }) => {
+      console.log(
+        `${GlyphButtonEvent.TOUCH_UP} event triggered by: ${tag} for ${String(action)}`
+      );
 
-  GlyphButton.addEventListener(GlyphButtonEvent.TOUCH_DOWN, async ({ tag }) => {
-    console.log(`${GlyphButtonEvent.TOUCH_DOWN} event triggered by: ${tag}`);
-    if (tag !== 'test') await MusicControls.playToggle();
-  });
+      if (action === Action.PLAY_PAUSE) await MusicControls.playToggle();
+      if (action === Action.SKIP) await MusicControls.next();
+    }
+  );
 
   TrackPlayer.addEventListener(Event.RemotePlay, async () => {
     await MusicControls.play();
@@ -43,7 +46,7 @@ export async function PlaybackService() {
     dataStore.setState({ activeTrack: e.track ?? null });
     console.log('Playing:', e.track);
 
-    GlyphButton.triggerEvent(GlyphButtonEvent.LONG_PRESS);
+    GlyphButton.triggerEvent(GlyphButtonEvent.TOUCH_UP);
   });
 
   TrackPlayer.addEventListener(Event.PlaybackError, async (e) => {
