@@ -3,7 +3,7 @@ package com.cyanchill.missingcore.music.toys.service
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.cyanchill.missingcore.music.toys.R
-import com.cyanchill.missingcore.music.toys.module.GlyphButtonEvent
+import com.cyanchill.missingcore.music.toys.model.GlyphButtonEvent
 import com.cyanchill.missingcore.music.toys.module.MatrixEvents
 import com.facebook.react.ReactApplication
 import com.facebook.react.bridge.ReactContext
