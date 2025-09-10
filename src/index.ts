@@ -1,7 +1,7 @@
 import * as GlyphButton from './GlyphButton';
 import MusicGlyphToys from './MusicGlyphToys';
 
-import { Event } from './constants/Event';
+export * from './constants';
 
 export function setUpToy() {
   return MusicGlyphToys.setUpToy();
@@ -15,4 +15,4 @@ export function setMatrixArtwork(uri: string) {
   return MusicGlyphToys.setMatrixArtwork(uri);
 }
 
-export { GlyphButton, Event };
+export { GlyphButton };

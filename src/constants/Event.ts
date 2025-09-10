@@ -7,7 +7,7 @@ export const Event = {
 
 export type Event = (typeof Event)[keyof typeof Event];
 
-type EventPayload = { tag: string };
+type EventPayload = { tag: string; action: string | null };
 
 export type EventPayloadByEvent = {
   [Event.SHORT_PRESS]: EventPayload;
