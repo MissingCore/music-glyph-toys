@@ -18,7 +18,7 @@ If the toy shows up, you should see a music note being displayed. If this toy en
 
 ## Setup
 
-The whole idea is to take advantage of the media service still existing even after dismissing the app from "Recent Tasks" (ie: 1Continue Playback on Dismiss` experiment feature enabled on MissingCore Music), and listen from events triggered by the toy to then tell the media service to do the actions.
+The whole idea is to take advantage of the media service still existing even after dismissing the app from "Recent Tasks" (ie: `Continue Playback on Dismiss` experiment feature enabled on MissingCore Music), and listen to events triggered by the toy to then tell the media service to do the actions.
 
 1. Make this toy active.
 2. Open the app.
