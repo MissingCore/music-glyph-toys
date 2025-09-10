@@ -174,7 +174,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "@expo/cli": "patches/@expo__cli.patch"
+      "@expo/cli": "patches/@expo__cli.patch",
+      "expo-file-system": "patches/expo-file-system.patch"
     }
   }
 }

@@ -8,6 +8,9 @@ patchedDependencies:
   '@expo/cli':
     hash: nfqwndalmadxq57muxjahl6rqu
     path: patches/@expo__cli.patch
+  expo-file-system:
+    hash: uuwesl3l2uh5igyfazvhmfpsr4
+    path: patches/expo-file-system.patch
 
 importers:
 
@@ -87,7 +90,7 @@ importers:
         version: 0.14.8(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))
       expo-file-system:
         specifier: ~18.1.11
-        version: 18.1.11(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))
+        version: 18.1.11(patch_hash=uuwesl3l2uh5igyfazvhmfpsr4)(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))
       expo-image:
         specifier: ^2.4.0
         version: 2.4.0(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
@@ -8884,7 +8887,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  expo-file-system@18.1.11(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0)):
+  expo-file-system@18.1.11(patch_hash=uuwesl3l2uh5igyfazvhmfpsr4)(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0)):
     dependencies:
       expo: 53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
       react-native: 0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0)
@@ -8944,7 +8947,7 @@ snapshots:
       babel-preset-expo: 13.2.4(@babel/core@7.28.4)
       expo-asset: 11.1.7(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
       expo-constants: 17.1.7(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))
-      expo-file-system: 18.1.11(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))
+      expo-file-system: 18.1.11(patch_hash=uuwesl3l2uh5igyfazvhmfpsr4)(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))
       expo-font: 13.3.2(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0)
       expo-keep-awake: 14.1.4(expo@53.0.22(@babel/core@7.28.4)(react-native@0.79.6(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0)
       expo-modules-autolinking: 2.1.14
