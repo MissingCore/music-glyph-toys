@@ -1,7 +1,4 @@
-import {
-  getDeviceInfo,
-  isDeviceSupported,
-} from '@missingcore/music-glyph-toys';
+import { GlyphButton, getDeviceInfo } from '@missingcore/music-glyph-toys';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -18,7 +15,9 @@ export function DeviceInfo() {
     <View style={styles.container}>
       <Text>Model: {result.model}</Text>
       <Text>Manufacturer: {result.manufacturer}</Text>
-      <Text>Device Supports Glyph Toys: {String(isDeviceSupported)}</Text>
+      <Text>
+        Device Supports Glyph Toys: {String(GlyphButton.isDeviceSupported)}
+      </Text>
     </View>
   );
 }
