@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 import com.cyanchill.missingcore.music.toys.R
 import com.cyanchill.missingcore.music.toys.model.GlyphButtonEvent
+import com.cyanchill.missingcore.music.toys.model.MatrixAction
 import com.cyanchill.missingcore.music.toys.module.MatrixEvents
 import com.facebook.react.ReactApplication
 import com.facebook.react.bridge.ReactContext
@@ -11,10 +12,18 @@ import com.nothing.ketchum.GlyphMatrixFrame
 import com.nothing.ketchum.GlyphMatrixManager
 import com.nothing.ketchum.GlyphMatrixObject
 import com.nothing.ketchum.GlyphMatrixUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   private val tag = "Music-Artwork"
+  private lateinit var bgScope: CoroutineScope
+  private var waitTimerJob: Job? = null
   private var matrixEventEmitter: MatrixEvents? = null
+  private var matrixAction: MatrixAction? = null
 
   override fun performOnServiceConnected(
     context: Context,
@@ -38,6 +47,8 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
       .build(applicationContext)
 
     glyphMatrixManager.setMatrixFrame(frame.render())
+
+    bgScope = CoroutineScope(Dispatchers.Default)
   }
 
   override fun performOnServiceDisconnected(context: Context) {
@@ -45,11 +56,20 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   }
 
   override fun onTouchPointPressed() {
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.TOUCH_DOWN, tag)
+    waitTimerJob?.cancel()
+    waitTimerJob = bgScope.launch {
+      delay(500L)
+      matrixAction = MatrixAction.PLAY_PAUSE
+      delay(3000L)
+      matrixAction = MatrixAction.SKIP
+    }
   }
 
-  override fun onTouchPointLongPress() {
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.LONG_PRESS, tag)
+  override fun onTouchPointReleased() {
+    waitTimerJob?.cancel()
+    waitTimerJob = null
+    matrixEventEmitter?.sendEvent(GlyphButtonEvent.TOUCH_UP, tag, matrixAction)
+    matrixAction = null
   }
 
   fun createReactEventEmitter(context: ReactContext?) {
