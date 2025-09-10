@@ -6,6 +6,8 @@ export interface Spec extends TurboModule {
     isDeviceSupported: boolean;
   };
 
+  setUpToy(): void;
+
   getDeviceInfo(): Promise<{ model: string; manufacturer: string }>;
 
   setMatrixArtwork(uri: String): Promise<boolean>;

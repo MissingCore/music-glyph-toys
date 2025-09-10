@@ -1,13 +1,12 @@
 package com.cyanchill.missingcore.music.toys
 
+import com.cyanchill.missingcore.music.toys.module.MusicGlyphToysModule
 import com.facebook.react.BaseReactPackage
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.module.model.ReactModuleInfo
 import java.util.HashMap
-
-import com.cyanchill.missingcore.music.toys.module.MusicGlyphToysModule
 
 class MusicGlyphToysPackage : BaseReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {

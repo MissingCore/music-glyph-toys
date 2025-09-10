@@ -3,6 +3,10 @@ import MusicGlyphToys from './MusicGlyphToys';
 
 import { Event } from './constants/Event';
 
+export function setUpToy() {
+  return MusicGlyphToys.setUpToy();
+}
+
 export function getDeviceInfo() {
   return MusicGlyphToys.getDeviceInfo();
 }

@@ -1,23 +1,31 @@
 package com.cyanchill.missingcore.music.toys.module
 
+import android.os.Build
+import com.cyanchill.missingcore.music.toys.MusicGlyphToysSpec
+import com.cyanchill.missingcore.music.toys.service.MusicArtworkToyService
+import com.cyanchill.missingcore.music.toys.utils.ValidationUtils
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 
-import android.os.Build
-
-import com.cyanchill.missingcore.music.toys.MusicGlyphToysSpec
-import com.cyanchill.missingcore.music.toys.utils.ValidationUtils
-
 class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationContext) :
   MusicGlyphToysSpec(reactContext) {
   private val context = reactContext
+  private var musicArtworkToyService: MusicArtworkToyService? = null
 
   override fun getTypedExportedConstants(): Map<String, Any?> {
     val constants = HashMap<String, Any?>()
     constants["isDeviceSupported"] = ValidationUtils.isDeviceSupported()
     return constants
+  }
+
+  @ReactMethod
+  override fun setUpToy() {
+    if (ValidationUtils.isDeviceSupported()) {
+      this.musicArtworkToyService = MusicArtworkToyService()
+      musicArtworkToyService!!.createReactEventEmitter(context)
+    }
   }
 
   @ReactMethod
@@ -31,7 +39,7 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
   @ReactMethod
   override fun setMatrixArtwork(uri: String, promise: Promise) {
     if (ValidationUtils.isDeviceSupported()) {
-      TODO("Not yet implemented - wait for after getting primary functionality working.")
+      musicArtworkToyService!!.setMatrixArtwork(uri)
       promise.resolve(true)
     } else {
       promise.resolve(false)
