@@ -1,5 +1,6 @@
-import { registerRootComponent } from 'expo';
+import { setUpToy } from '@missingcore/music-glyph-toys';
 import TrackPlayer from '@weights-ai/react-native-track-player';
+import { registerRootComponent } from 'expo';
 
 import { PlaybackService } from './services/RNTPService';
 
@@ -10,5 +11,6 @@ import App from './App';
 // It also ensures that whether you load the app in the Expo client or in a native build,
 // the environment is set up appropriately
 registerRootComponent(App);
+setUpToy();
 setupPlayer(); // async
 TrackPlayer.registerPlaybackService(() => PlaybackService);
