@@ -10,6 +10,10 @@ import { MusicControls } from './MusicControls';
 
 /** How we handle the actions in the media control notification. */
 export async function PlaybackService() {
+  GlyphButton.addEventListener(GlyphButtonEvent.MOUNT, ({ tag }) => {
+    console.log(`${GlyphButtonEvent.MOUNT} event triggered by: ${tag}`);
+  });
+
   GlyphButton.addEventListener(
     GlyphButtonEvent.TOUCH_UP,
     async ({ tag, action }) => {
