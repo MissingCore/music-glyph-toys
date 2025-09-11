@@ -95,6 +95,20 @@ android {
         versionCode 1
         versionName "1.0.0"
     }
+    /**
+     * https://developer.android.com/build/configure-apk-splits
+     *
+     *  - https://github.com/react-native-community/discussions-and-proposals/issues/602
+     *  - https://reactnative.dev/docs/signed-apk-android#publishing-to-other-stores
+     */
+    splits {
+        abi {
+            reset()
+            enable true
+            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            universalApk false  // If true, also generate a universal APK
+        }
+    }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -124,6 +138,16 @@ android {
     }
     androidResources {
         ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def abiFilter = output.getFilter(com.android.build.OutputFile.ABI)
+            def newName = "demo"
+            if (abiFilter != null) newName += "-${abiFilter}"
+            newName += "-${variant.buildType.name}.apk"
+            output.outputFileName = newName
+        }
     }
 }
 
