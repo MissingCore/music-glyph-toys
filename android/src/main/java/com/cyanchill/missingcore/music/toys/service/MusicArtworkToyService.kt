@@ -41,7 +41,7 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
     displayFrame(musicIconFrame)
     bgScope = CoroutineScope(Dispatchers.Default)
 
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag, null)
+    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag)
   }
 
   override fun performOnServiceDisconnected(context: Context) {
@@ -76,7 +76,7 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   fun createReactEventEmitter(context: ReactContext?) {
     if (context == null) return
     matrixEventEmitter = MatrixEvents(context)
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag, null)
+    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag)
   }
 
   fun setMatrixArtwork(uri: String) {
