@@ -1,6 +1,7 @@
 package com.cyanchill.missingcore.music.toys.model
 
 enum class GlyphButtonEvent(val code: String) {
+  MOUNT("mount"),
   SHORT_PRESS("short-press"),
   LONG_PRESS("long-press"),
   TOUCH_DOWN("touch-down"),

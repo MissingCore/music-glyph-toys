@@ -40,6 +40,8 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
     createReactEventEmitter(accessReactContext())
     displayFrame(musicIconFrame)
     bgScope = CoroutineScope(Dispatchers.Default)
+
+    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag, null)
   }
 
   override fun performOnServiceDisconnected(context: Context) {
@@ -73,7 +75,8 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   /** Create the event emitter used to communicate with the React Native app. */
   fun createReactEventEmitter(context: ReactContext?) {
     if (context == null) return
-    this.matrixEventEmitter = MatrixEvents(context)
+    matrixEventEmitter = MatrixEvents(context)
+    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag, null)
   }
 
   fun setMatrixArtwork(uri: String) {
