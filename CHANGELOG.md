@@ -7,6 +7,13 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 ## [Unreleased]
 
+### 🎉 Added
+
+- Initial API to interact with Glyph Toy.
+  - `setUpToy()`: Create or get the current instance to the service associated with the Glyph Toy and ensure that events can be emitted.
+  - `GlyphButton.addEventListener()`: Create an event listener which listens to events emitted by our Glyph Toy when we use the Glyph Button.
+  - `GlyphButton.isSupported`: Boolean indicating whether the Glyph Matrix is supported on the current device.
+
 ## [0.0.0] - 2025-09-08
 
 Add section to make `release-it` not complain that this is missing. 2025-09-08 is when we really started working on this repository.
