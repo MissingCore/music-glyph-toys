@@ -8,7 +8,7 @@
 
   <application>
     <service
-      android:name="com.cyanchill.missingcore.music.service.MusicArtworkToyService"
+      android:name="com.cyanchill.missingcore.music.toys.service.MusicArtworkToyService"
       android:exported="true">
       <intent-filter>
         <action android:name="com.nothing.glyph.TOY" />
