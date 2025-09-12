@@ -1,28 +1,54 @@
 # @missingcore/music-glyph-toys
 
 > [!CAUTION]
-> This is currently experimental and probably doesn't work as we're trying to have the Glyph Toy communicate to our app, which uses React Native.
+> This is currently experimental and probably doesn't work as we're trying to have the Glyph Toy communicate with our app, which uses React Native.
 >
-> - 50% chance of showing up in the "Manage Glyph Toys" screen.
+> - 80% chance of showing up in the "Manage Glyph Toys" screen & displaying a music note when selected.
 > - <1% chance of working.
 
-## Design Idea
+## Toy Design & Usage
 
-If the toy shows up, you should see a music note being displayed. If this toy ends up working the way we want, we'll then add some logic to render the artwork of the playing track.
+Given that the toy shows up on the Glyph Matrix screen, you should see a music note in the default state.
 
-- `TOUCH_DOWN`: Play/Pause the playing track.
-- `LONG_PRESS`: Skip the current track.
+Actions that can be done by this toy are handled by holding down the Glyph Button for a certain period of time and then releasing. The Glyph Matrix will change to display an icon representing the actions below:
 
-> [!NOTE]
-> I think that the `TOUCH_DOWN` would trigger when we try to do `LONG_PRESS`. In that case, we might revise the design to use `TOUCH_DOWN` and change the displayed Glyph Matrix to show the different actions (Play/Pause & Skip) that can be done depending on how long we hold the Glyph Button down.
+- **Release in first `500ms`:** Does Nothing
+- **Release after `500ms`:** Play/Pause
+- **Release after `3.5s`:** Skip
 
-## Setup
+> **Note:** If this toy ends up working, then we'll later add some logic to display the artwork of the playing track.
 
-The whole idea is to take advantage of the media service still existing even after dismissing the app from "Recent Tasks" (ie: `Continue Playback on Dismiss` experiment feature enabled on MissingCore Music), and listen to events triggered by the toy to then tell the media service to do the actions.
+### Testing With Demo App
 
-1. Make this toy active.
-2. Open the app.
-3. Things should work?
+The implementation to allow interaction with the React Native app with this toy relies on the app working "headlessly" while still listening to events emitted by the toy. Meaning this will only work when the media service still exists even after dismissing the app from "Recent Tasks" (ie: `Continue Playback on Dismiss` experimental feature enabled in MissingCore Music).
+
+The demo app can be found in this repository's [`Releases`](https://github.com/MissingCore/music-glyph-toys/releases). The app will find & save the minimum amount of metadata for the first 20 tracks found. It'll have a simple UI to select the track to be played along with play/pause/skip/prev functionalities.
+
+Getting the toy to work should be as follows:
+
+1. Add the toy via the Glyph Toys Manager.
+2. Set this toy as active.
+3. Open the demo app (this should set up the media notification and create a link with the Glyph Toy).
+4. The actions mentioned above should work?
+
+> [!IMPORTANT]
+> Since playback will continue when you dismiss the app from "Recent Tasks", you'll need to force-stop the app (or pause the media via the notification) to stop music playback.
+>
+> If you force-stop the app, then you'll need to redo the steps above to get things working again?
+
+## Technical Documentation
+
+We were required to use a [local maven repository](https://github.com/react-native-community/cli/issues/1759#issuecomment-1328260060) to build the app with this library as `Direct local .aar file dependencies are not supported`. This means that we need to add the following to the `build.gradle` file to the React Native apps that use this library:
+
+```groovy
+allprojects {
+  repositories {
+    maven {
+      url "$rootDir/../node_modules/@missingcore/music-glyph-toys/android/glyph-matrix-sdk"
+    }
+  }
+}
+```
 
 ## References
 
