@@ -7,6 +7,8 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 ## [Unreleased]
 
+## [0.1.0] - 2025-09-11
+
 ### 🎉 Added
 
 - Initial API to interact with Glyph Toy.
@@ -18,4 +20,6 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 Add section to make `release-it` not complain that this is missing. 2025-09-08 is when we really started working on this repository.
 
-[unreleased]: https://github.com/MissingCore/music-glyph-toys/compare/v0.0.0...HEAD
+[unreleased]: https://github.com/MissingCore/music-glyph-toys/compare/v0.1.0...HEAD
+
+[0.1.0]: https://github.com/MissingCore/music-glyph-toys/releases/tag/v0.1.0
