@@ -17,9 +17,6 @@ allprojects {
     google()
     mavenCentral()
     maven { url 'https://www.jitpack.io' }
-    maven {
-      url "$rootDir/../node_modules/@missingcore/music-glyph-toys/android/glyph-matrix-sdk"
-    }
   }
 }
 

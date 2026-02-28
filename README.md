@@ -36,20 +36,6 @@ Getting the toy to work should be as follows:
 >
 > If you force-stop the app, then you'll need to redo the steps above to get things working again?
 
-## Technical Documentation
-
-We were required to use a [local maven repository](https://github.com/react-native-community/cli/issues/1759#issuecomment-1328260060) to build the app with this library as `Direct local .aar file dependencies are not supported`. This means that we need to add the following to the `build.gradle` file to the React Native apps that use this library:
-
-```groovy
-allprojects {
-  repositories {
-    maven {
-      url "$rootDir/../node_modules/@missingcore/music-glyph-toys/android/glyph-matrix-sdk"
-    }
-  }
-}
-```
-
 ## References
 
 - https://github.com/Nothing-Developer-Programme/GlyphMatrix-Developer-Kit
