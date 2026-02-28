@@ -1,4 +1,9 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {
+  GlyphButtonEvent,
+  MatrixAction,
+  triggerEvent,
+} from '@missingcore/music-glyph-toys';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { MusicControls } from '../services/MusicControls';
@@ -11,11 +16,23 @@ export function MediaControls() {
       <IconButton name="play-skip-back" onPress={() => MusicControls.prev()} />
       <IconButton
         name={isPlaying ? 'pause' : 'play'}
-        onPress={() => MusicControls.playToggle()}
+        onPress={() =>
+          triggerEvent(
+            GlyphButtonEvent.TOUCH_UP,
+            'media-controls',
+            MatrixAction.PLAY_PAUSE
+          )
+        }
       />
       <IconButton
         name="play-skip-forward"
-        onPress={() => MusicControls.next()}
+        onPress={() =>
+          triggerEvent(
+            GlyphButtonEvent.TOUCH_UP,
+            'media-controls',
+            MatrixAction.SKIP
+          )
+        }
       />
     </View>
   );
