@@ -77,6 +77,9 @@ importers:
       '@expo/vector-icons':
         specifier: 15.0.3
         version: 15.0.3(expo-font@14.0.11(expo@54.0.33(@babel/core@7.29.0)(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4))(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4))(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4)
+      '@missingcore/music-glyph-toys':
+        specifier: workspace:*
+        version: link:..
       '@missingcore/react-native-metadata-retriever':
         specifier: 2.5.0
         version: 2.5.0(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4)

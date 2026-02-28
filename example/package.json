@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "15.0.3",
+    "@missingcore/music-glyph-toys": "workspace:*",
     "@missingcore/react-native-metadata-retriever": "2.5.0",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@weights-ai/react-native-track-player": "github:MissingCore/react-native-track-player#74325fcbff1af92006d31791bcca493985f94550",
