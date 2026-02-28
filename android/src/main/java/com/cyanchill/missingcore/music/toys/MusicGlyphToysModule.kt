@@ -46,6 +46,7 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   }
 
   //#region [Events]
+  /** Abstraction layer to sending events via a single handler. */
   override fun sendEvent(event: GlyphButtonEvent, tag: String, action: MatrixAction?) {
     val payload = Arguments.createMap().apply {
       putString("tag", tag)
