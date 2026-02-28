@@ -1,4 +1,5 @@
 import TrackPlayer, {
+  AppKilledPlaybackBehavior,
   Capability,
   RepeatMode,
 } from '@weights-ai/react-native-track-player';
@@ -34,7 +35,16 @@ export async function setupPlayer() {
   // if we're on the last track.
   await TrackPlayer.setRepeatMode(RepeatMode.Queue);
 
+  await setPlayerOptions();
+}
+
+export async function setPlayerOptions(continuePlaybackOnDismiss = true) {
   await TrackPlayer.updateOptions({
+    android: {
+      appKilledPlaybackBehavior: continuePlaybackOnDismiss
+        ? AppKilledPlaybackBehavior.ContinuePlayback
+        : AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
+    },
     capabilities: [
       Capability.Play,
       Capability.Pause,

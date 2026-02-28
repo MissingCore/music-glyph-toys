@@ -18,6 +18,8 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
 
   override fun getTypedExportedConstants(): Map<String, Any?> {
     val constants = HashMap<String, Any?>()
+    constants["GlyphButtonEvent"] = GlyphButtonEvent.getConstants()
+    constants["MatrixAction"] = MatrixAction.getConstants()
     constants["isDeviceSupported"] = ValidationUtils.isDeviceSupported()
     return constants
   }
@@ -62,9 +64,15 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   }
 
   /** Help test whether the events are fired correctly. */
-  override fun testEvent(event: String) {
+  override fun testEvent(event: String, tag: String?, action: String?) {
     val glyphEvent = GlyphButtonEvent.fromCode(event)
-    if (glyphEvent != null) sendEvent(glyphEvent, "test")
+    if (glyphEvent != null) {
+      sendEvent(
+        glyphEvent,
+        tag ?: "testEvent()",
+        MatrixAction.fromCode(action)
+      )
+    }
   }
   //#endregion
 

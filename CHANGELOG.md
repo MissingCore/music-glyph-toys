@@ -7,8 +7,25 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 ## [Unreleased]
 
+### ❗ Breaking Changes
+
+- Events are now defined by `GlyphButton.onMount/onShortPress/onLongPress/onTouchDown/onTouchUp` instead of `GlyphButton.addEventListener()`.
+  - Only `onMount` & `onTouchUp` events are used.
+- Changed exports:
+  - `GlyphButton.isDeviceSupported` -> `GlyphButton.isSupported`
+  - `GlyphButton.triggerEvent` -> `triggerEvent`
+  - `Action` -> `MatrixAction`
+  - `Event` -> `GlyphButtonEvent`
+
+### ⚡ Changes
+
+- Make `triggerEvent` more versatile (you can now mimic how the function gets called by the service).
+
+### ⚙️ Internal Changes
+
 - Rewrite app to use Turbo Native Modules.
 - Upgrade example app to Expo SDK 54 & React Native 0.81.
+- New toggle in example app to stop playback when you dismiss the app (preventing the need of manually force-stopping the app).
 
 ## [0.1.1] - 2025-09-11
 

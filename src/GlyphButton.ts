@@ -1,25 +1,14 @@
 import MusicGlyphToys from './MusicGlyphToys';
-import type { Event } from './constants/Event';
 
 //#region Events
-const onMount = MusicGlyphToys.onMount;
-const onShortPress = MusicGlyphToys.onShortPress;
-const onLongPress = MusicGlyphToys.onLongPress;
-const onTouchDown = MusicGlyphToys.onTouchDown;
-const onTouchUp = MusicGlyphToys.onTouchUp;
-
-export function triggerEvent<T extends Event>(event: T) {
-  return MusicGlyphToys.testEvent(event);
-}
+export const onMount = MusicGlyphToys.onMount;
+/** @deprecated Currently unused. */
+export const onShortPress = MusicGlyphToys.onShortPress;
+/** @deprecated Currently unused. */
+export const onLongPress = MusicGlyphToys.onLongPress;
+/** @deprecated Currently unused. */
+export const onTouchDown = MusicGlyphToys.onTouchDown;
+export const onTouchUp = MusicGlyphToys.onTouchUp;
 //#endregion
 
-const { isDeviceSupported } = MusicGlyphToys.getConstants();
-
-export {
-  isDeviceSupported,
-  onMount,
-  onShortPress,
-  onLongPress,
-  onTouchDown,
-  onTouchUp,
-};
+export const isSupported = MusicGlyphToys.getConstants().isDeviceSupported;

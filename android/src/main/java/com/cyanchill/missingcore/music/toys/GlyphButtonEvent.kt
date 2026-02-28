@@ -8,6 +8,8 @@ enum class GlyphButtonEvent(val code: String) {
   TOUCH_UP("touch-up");
 
   companion object {
+    fun getConstants() = entries.associate { it.name to it.code }
+
     fun fromCode(code: String?): GlyphButtonEvent? {
       if (code == null) return null
       return entries.find { it.code == code }
