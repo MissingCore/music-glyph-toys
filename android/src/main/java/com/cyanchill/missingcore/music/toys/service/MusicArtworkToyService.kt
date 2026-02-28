@@ -3,9 +3,9 @@ package com.cyanchill.missingcore.music.toys.service
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.cyanchill.missingcore.music.toys.R
-import com.cyanchill.missingcore.music.toys.model.GlyphButtonEvent
-import com.cyanchill.missingcore.music.toys.model.MatrixAction
-import com.cyanchill.missingcore.music.toys.module.MatrixEvents
+import com.cyanchill.missingcore.music.toys.GlyphButtonEvent
+import com.cyanchill.missingcore.music.toys.MatrixAction
+import com.cyanchill.missingcore.music.toys.MatrixEvent
 import com.facebook.react.ReactApplication
 import com.facebook.react.bridge.ReactContext
 import com.nothing.ketchum.GlyphMatrixFrame
@@ -22,7 +22,6 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   private val tag = "Music-Artwork"
   private lateinit var bgScope: CoroutineScope
   private var waitTimerJob: Job? = null
-  private var matrixEventEmitter: MatrixEvents? = null
   private var matrixAction: MatrixAction? = null
 
   private lateinit var musicIconFrame: GlyphMatrixFrame
@@ -41,7 +40,7 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
     displayFrame(musicIconFrame)
     bgScope = CoroutineScope(Dispatchers.Default)
 
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag)
+    MatrixEvent.handler?.sendEvent(GlyphButtonEvent.MOUNT, tag)
   }
 
   override fun performOnServiceDisconnected(context: Context) {
@@ -66,7 +65,7 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
     waitTimerJob?.cancel()
     waitTimerJob = null
     // Notify React Native application of the action that should be done.
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.TOUCH_UP, tag, matrixAction)
+    MatrixEvent.handler?.sendEvent(GlyphButtonEvent.TOUCH_UP, tag, matrixAction)
     matrixAction = null
     // Restore displayed matrix.
     displayFrame(musicIconFrame)
@@ -75,8 +74,7 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   /** Create the event emitter used to communicate with the React Native app. */
   fun createReactEventEmitter(context: ReactContext?) {
     if (context == null) return
-    matrixEventEmitter = MatrixEvents(context)
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag)
+    MatrixEvent.handler?.sendEvent(GlyphButtonEvent.MOUNT, tag)
   }
 
   fun setMatrixArtwork(uri: String) {
@@ -107,7 +105,6 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   /** Get ReactContext so we can communicate with the React Native app when the toy is active. */
   private fun accessReactContext(): ReactContext? {
     val application = applicationContext as? ReactApplication ?: return null
-    val reactInstanceManager = application.reactNativeHost.reactInstanceManager
-    return reactInstanceManager.currentReactContext
+    return application.reactHost?.currentReactContext
   }
 }

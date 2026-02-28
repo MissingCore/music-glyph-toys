@@ -1,19 +1,20 @@
-package com.cyanchill.missingcore.music.toys.module
+package com.cyanchill.missingcore.music.toys
 
 import android.os.Build
-import com.cyanchill.missingcore.music.toys.MusicGlyphToysSpec
-import com.cyanchill.missingcore.music.toys.model.GlyphButtonEvent
 import com.cyanchill.missingcore.music.toys.service.MusicArtworkToyService
-import com.cyanchill.missingcore.music.toys.utils.ValidationUtils
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
 
-class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationContext) :
-  MusicGlyphToysSpec(reactContext) {
+class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
+  NativeMusicGlyphToysSpec(reactContext), MatrixEventHandler {
+
   private val context = reactContext
   private var musicArtworkToyService: MusicArtworkToyService? = null
+
+  init {
+    MatrixEvent.handler = this
+  }
 
   override fun getTypedExportedConstants(): Map<String, Any?> {
     val constants = HashMap<String, Any?>()
@@ -21,7 +22,6 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
     return constants
   }
 
-  @ReactMethod
   override fun setUpToy() {
     if (ValidationUtils.isDeviceSupported()) {
       this.musicArtworkToyService = MusicArtworkToyService()
@@ -29,7 +29,6 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
     }
   }
 
-  @ReactMethod
   override fun getDeviceInfo(promise: Promise) {
     val deviceInfoMap = Arguments.createMap()
     deviceInfoMap.putString("model", Build.MODEL)
@@ -37,7 +36,6 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
     promise.resolve(deviceInfoMap)
   }
 
-  @ReactMethod
   override fun setMatrixArtwork(uri: String, promise: Promise) {
     if (ValidationUtils.isDeviceSupported()) {
       musicArtworkToyService!!.setMatrixArtwork(uri)
@@ -48,30 +46,28 @@ class MusicGlyphToysModule internal constructor(reactContext: ReactApplicationCo
   }
 
   //#region [Events]
-  @ReactMethod
+  override fun sendEvent(event: GlyphButtonEvent, tag: String, action: MatrixAction?) {
+    val payload = Arguments.createMap().apply {
+      putString("tag", tag)
+      putNull("action")
+    }
+    if (action != null) payload.putString("action", action.code)
+
+    if (event == GlyphButtonEvent.MOUNT) emitOnMount(payload)
+    else if (event == GlyphButtonEvent.SHORT_PRESS) emitOnShortPress(payload)
+    else if (event == GlyphButtonEvent.LONG_PRESS) emitOnLongPress(payload)
+    else if (event == GlyphButtonEvent.TOUCH_DOWN) emitOnTouchDown(payload)
+    else if (event == GlyphButtonEvent.TOUCH_UP) emitOnTouchUp(payload)
+  }
+
   /** Help test whether the events are fired correctly. */
   override fun testEvent(event: String) {
     val glyphEvent = GlyphButtonEvent.fromCode(event)
-    if (glyphEvent != null) {
-      val matrixEventInstance = MatrixEvents(context)
-      matrixEventInstance.sendEvent(glyphEvent, "test")
-    }
-  }
-
-  @ReactMethod
-  override fun addListener(eventName: String?) {
-    // Keep: Required for RN built-in NativeEventEmitter calls.
-  }
-
-  @ReactMethod
-  override fun removeListeners(count: Double) {
-    // Keep: Required for RN built-in NativeEventEmitter calls.
+    if (glyphEvent != null) sendEvent(glyphEvent, "test")
   }
   //#endregion
 
   companion object {
-    const val NAME = "MusicGlyphToys"
+    const val NAME = NativeMusicGlyphToysSpec.NAME
   }
-
-  override fun getName(): String = NAME
 }

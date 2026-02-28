@@ -1,11 +1,10 @@
 package com.cyanchill.missingcore.music.toys
 
-import com.cyanchill.missingcore.music.toys.module.MusicGlyphToysModule
 import com.facebook.react.BaseReactPackage
-import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.NativeModule
-import com.facebook.react.module.model.ReactModuleInfoProvider
+import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
+import com.facebook.react.module.model.ReactModuleInfoProvider
 import java.util.HashMap
 
 class MusicGlyphToysPackage : BaseReactPackage() {
@@ -17,19 +16,16 @@ class MusicGlyphToysPackage : BaseReactPackage() {
     }
   }
 
-  override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
-    return ReactModuleInfoProvider {
-      val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
-      val isTurboModule: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-      moduleInfos[MusicGlyphToysModule.NAME] = ReactModuleInfo(
-        MusicGlyphToysModule.NAME,
-        MusicGlyphToysModule.NAME,
-        false,  // canOverrideExistingModule
-        false,  // needsEagerInit
-        false,  // isCxxModule
-        isTurboModule // isTurboModule
+  override fun getReactModuleInfoProvider() = ReactModuleInfoProvider {
+    mapOf(
+      MusicGlyphToysModule.NAME to ReactModuleInfo(
+        name = MusicGlyphToysModule.NAME,
+        className = MusicGlyphToysModule.NAME,
+        canOverrideExistingModule = false,
+        needsEagerInit = false,
+        isCxxModule = false,
+        isTurboModule = true
       )
-      moduleInfos
-    }
+    )
   }
 }

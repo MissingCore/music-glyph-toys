@@ -1,4 +1,4 @@
-package com.cyanchill.missingcore.music.toys.utils
+package com.cyanchill.missingcore.music.toys
 
 import android.os.Build
 
