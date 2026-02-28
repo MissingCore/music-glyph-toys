@@ -1,8 +1,4 @@
-import {
-  GlyphButton,
-  Action,
-  Event as GlyphButtonEvent,
-} from '@missingcore/music-glyph-toys';
+import { GlyphButton, Action } from '@missingcore/music-glyph-toys';
 import TrackPlayer, { Event } from '@weights-ai/react-native-track-player';
 
 import { dataStore } from './DataStore';
@@ -11,12 +7,12 @@ import { MusicControls } from './MusicControls';
 /** How we handle the actions in the media control notification. */
 export async function PlaybackService() {
   GlyphButton.onMount(({ tag }) => {
-    console.log(`${GlyphButtonEvent.MOUNT} event triggered by: ${tag}`);
+    console.log(`${GlyphButton.Event.MOUNT} event triggered by: ${tag}`);
   });
 
   GlyphButton.onTouchUp(async ({ tag, action }) => {
     console.log(
-      `${GlyphButtonEvent.TOUCH_UP} event triggered by: ${tag} for ${String(
+      `${GlyphButton.Event.TOUCH_UP} event triggered by: ${tag} for ${String(
         action
       )}`
     );
@@ -49,7 +45,7 @@ export async function PlaybackService() {
     dataStore.setState({ activeTrack: e.track ?? null });
     console.log('Playing:', e.track);
 
-    GlyphButton.triggerEvent(GlyphButtonEvent.TOUCH_UP);
+    GlyphButton.triggerEvent(GlyphButton.Event.TOUCH_UP);
   });
 
   TrackPlayer.addEventListener(Event.PlaybackError, async (e) => {

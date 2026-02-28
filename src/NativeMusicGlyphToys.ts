@@ -5,8 +5,20 @@ type Action = 'play-pause' | 'skip';
 
 export type EventPayload = { tag: string; action: Action | null };
 
+type GlyphButtonEventObject = {
+  /** Lifecycle Events */
+  MOUNT: 'mount';
+
+  /** Glyph Button Events */
+  SHORT_PRESS: 'short-press';
+  LONG_PRESS: 'long-press';
+  TOUCH_DOWN: 'touch-down';
+  TOUCH_UP: 'touch-up';
+};
+
 export interface Spec extends TurboModule {
   readonly getConstants: () => {
+    GlyphButtonEvent: GlyphButtonEventObject;
     isDeviceSupported: boolean;
   };
 
