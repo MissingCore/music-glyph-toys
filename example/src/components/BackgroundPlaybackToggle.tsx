@@ -14,7 +14,12 @@ export function BackgroundPlaybackToggle() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Continue Playback on Dismiss:</Text>
-      <Switch value={isEnabled} onValueChange={onChange} />
+      <Switch
+        value={isEnabled}
+        onValueChange={onChange}
+        thumbColor="#D71921"
+        trackColor={{ false: '#D9D9D9', true: '#D9D9D9' }}
+      />
     </View>
   );
 }
