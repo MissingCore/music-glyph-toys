@@ -64,9 +64,15 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   }
 
   /** Help test whether the events are fired correctly. */
-  override fun testEvent(event: String) {
+  override fun testEvent(event: String, tag: String?, action: String?) {
     val glyphEvent = GlyphButtonEvent.fromCode(event)
-    if (glyphEvent != null) sendEvent(glyphEvent, "test")
+    if (glyphEvent != null) {
+      sendEvent(
+        glyphEvent,
+        tag ?: "testEvent()",
+        MatrixAction.fromCode(action)
+      )
+    }
   }
   //#endregion
 

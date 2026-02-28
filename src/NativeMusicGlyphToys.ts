@@ -38,7 +38,7 @@ export interface Spec extends TurboModule {
   setMatrixArtwork(uri: string): Promise<boolean>;
 
   //#region Events
-  testEvent(event: string): void;
+  testEvent(event: string, tag?: string, action?: Action): void;
 
   readonly onMount: CodegenTypes.EventEmitter<EventPayload>;
   readonly onShortPress: CodegenTypes.EventEmitter<EventPayload>;

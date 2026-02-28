@@ -19,8 +19,10 @@ export async function setMatrixArtwork(uri: string) {
 
 //#region Constants & Types
 const { GlyphButtonEvent, MatrixAction } = MusicGlyphToys.getConstants();
+
 type GlyphButtonEvent =
   (typeof GlyphButtonEvent)[keyof typeof GlyphButtonEvent];
+type MatrixAction = (typeof MatrixAction)[keyof typeof MatrixAction];
 
 export type { EventPayload };
 export { GlyphButtonEvent, MatrixAction };
@@ -33,8 +35,12 @@ export function getDeviceInfo() {
 }
 
 /** Used to test the exported event listeners. */
-export function triggerEvent<T extends GlyphButtonEvent>(event: T) {
-  return MusicGlyphToys.testEvent(event);
+export function triggerEvent<T extends GlyphButtonEvent>(
+  event: T,
+  tag?: string,
+  action?: MatrixAction
+) {
+  return MusicGlyphToys.testEvent(event, tag, action);
 }
 //#endregion
 
