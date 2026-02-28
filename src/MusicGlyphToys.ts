@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { Platform } from 'react-native';
 
 import type { Spec } from './NativeMusicGlyphToys';
 
@@ -11,12 +11,7 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n';
 
-// @ts-expect-error
-const isTurboModuleEnabled = global.__turboModuleProxy != null;
-
-const MusicGlyphToysModule = isTurboModuleEnabled
-  ? require('./NativeMusicGlyphToys').default
-  : NativeModules.MusicGlyphToys;
+const MusicGlyphToysModule = require('./NativeMusicGlyphToys').default;
 
 const MusicGlyphToys = MusicGlyphToysModule
   ? MusicGlyphToysModule

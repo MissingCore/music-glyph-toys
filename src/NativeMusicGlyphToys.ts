@@ -1,5 +1,9 @@
-import type { TurboModule } from 'react-native';
+import type { CodegenTypes, TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
+
+type Action = 'play-pause' | 'skip';
+
+export type EventPayload = { tag: string; action: Action | null };
 
 export interface Spec extends TurboModule {
   readonly getConstants: () => {
@@ -10,14 +14,16 @@ export interface Spec extends TurboModule {
 
   getDeviceInfo(): Promise<{ model: string; manufacturer: string }>;
 
-  setMatrixArtwork(uri: String): Promise<boolean>;
+  setMatrixArtwork(uri: string): Promise<boolean>;
 
   //#region Events
-  testEvent(event: String): void;
+  testEvent(event: string): void;
 
-  // Below functions are required for RN built-in NativeEventEmitter calls.
-  addListener(event: string): void;
-  removeListeners(count: number): void;
+  readonly onMount: CodegenTypes.EventEmitter<EventPayload>;
+  readonly onShortPress: CodegenTypes.EventEmitter<EventPayload>;
+  readonly onLongPress: CodegenTypes.EventEmitter<EventPayload>;
+  readonly onTouchDown: CodegenTypes.EventEmitter<EventPayload>;
+  readonly onTouchUp: CodegenTypes.EventEmitter<EventPayload>;
   //#endregion
 }
 
