@@ -19,6 +19,18 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "package": "com.cyanchill.missingcore.music.toys.demo"
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableBundleCompression": true,
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
+        }
+      ]
+    ]
   }
 }
