@@ -141,9 +141,6 @@
     "jsSrcsDir": "src",
     "android": {
       "javaPackageName": "com.cyanchill.missingcore.music.toys"
-    },
-    "outputDir": {
-      "android": "android/generated"
     }
   },
   "create-react-native-library": {
