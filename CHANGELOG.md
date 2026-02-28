@@ -7,6 +7,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 ## [Unreleased]
 
+- Rewrite app to use Turbo Modules.
+- Upgrade example app to Expo SDK 54 & React Native 0.81.
+
+
 ## [0.1.1] - 2025-09-11
 
 ### 🛠️ Fixes
