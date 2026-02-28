@@ -31,7 +31,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
 }
 expoAutolinking.useExpoModules()
 
-rootProject.name = 'Music Glyph Toys Demo'
+rootProject.name = 'MusicGlyphToys Demo'
 
 expoAutolinking.useExpoVersionCatalog()
 

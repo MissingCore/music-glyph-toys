@@ -4,7 +4,7 @@ import {
   getMetadata,
   saveArtwork,
 } from '@missingcore/react-native-metadata-retriever';
-import { Directory, File } from 'expo-file-system/next';
+import { Directory, File } from 'expo-file-system';
 import { getAssetsAsync } from 'expo-media-library';
 
 import { ImageDirectory } from '../utils/file-system';

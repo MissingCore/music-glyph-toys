@@ -10,21 +10,20 @@ import { MusicControls } from './MusicControls';
 
 /** How we handle the actions in the media control notification. */
 export async function PlaybackService() {
-  GlyphButton.addEventListener(GlyphButtonEvent.MOUNT, ({ tag }) => {
+  GlyphButton.onMount(({ tag }) => {
     console.log(`${GlyphButtonEvent.MOUNT} event triggered by: ${tag}`);
   });
 
-  GlyphButton.addEventListener(
-    GlyphButtonEvent.TOUCH_UP,
-    async ({ tag, action }) => {
-      console.log(
-        `${GlyphButtonEvent.TOUCH_UP} event triggered by: ${tag} for ${String(action)}`
-      );
+  GlyphButton.onTouchUp(async ({ tag, action }) => {
+    console.log(
+      `${GlyphButtonEvent.TOUCH_UP} event triggered by: ${tag} for ${String(
+        action
+      )}`
+    );
 
-      if (action === Action.PLAY_PAUSE) await MusicControls.playToggle();
-      if (action === Action.SKIP) await MusicControls.next();
-    }
-  );
+    if (action === Action.PLAY_PAUSE) await MusicControls.playToggle();
+    if (action === Action.SKIP) await MusicControls.next();
+  });
 
   TrackPlayer.addEventListener(Event.RemotePlay, async () => {
     await MusicControls.play();
