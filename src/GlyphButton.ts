@@ -15,5 +15,4 @@ export function triggerEvent<T extends GlyphButtonEvent>(event: T) {
 }
 //#endregion
 
-export const isDeviceSupported =
-  MusicGlyphToys.getConstants().isDeviceSupported;
+export const isSupported = MusicGlyphToys.getConstants().isDeviceSupported;

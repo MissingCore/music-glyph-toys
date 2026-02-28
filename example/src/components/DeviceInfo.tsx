@@ -15,9 +15,7 @@ export function DeviceInfo() {
     <View style={styles.container}>
       <Text>Model: {result.model}</Text>
       <Text>Manufacturer: {result.manufacturer}</Text>
-      <Text>
-        Device Supports Glyph Toys: {String(GlyphButton.isDeviceSupported)}
-      </Text>
+      <Text>Device Supports Glyph Toys: {String(GlyphButton.isSupported)}</Text>
     </View>
   );
 }
