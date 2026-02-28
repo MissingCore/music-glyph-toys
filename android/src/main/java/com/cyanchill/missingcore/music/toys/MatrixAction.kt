@@ -5,6 +5,8 @@ enum class MatrixAction(val code: String) {
   SKIP("skip");
 
   companion object {
+    fun getConstants() = entries.associate { it.name to it.code }
+
     fun fromCode(code: String?): MatrixAction? {
       if (code == null) return null
       return entries.find { it.code == code }

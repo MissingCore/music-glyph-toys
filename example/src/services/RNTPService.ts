@@ -1,4 +1,4 @@
-import { GlyphButton, Action } from '@missingcore/music-glyph-toys';
+import { GlyphButton } from '@missingcore/music-glyph-toys';
 import TrackPlayer, { Event } from '@weights-ai/react-native-track-player';
 
 import { dataStore } from './DataStore';
@@ -17,8 +17,14 @@ export async function PlaybackService() {
       )}`
     );
 
-    if (action === Action.PLAY_PAUSE) await MusicControls.playToggle();
-    if (action === Action.SKIP) await MusicControls.next();
+    switch (action) {
+      case GlyphButton.Action.PLAY_PAUSE:
+        await MusicControls.playToggle();
+        break;
+      case GlyphButton.Action.SKIP:
+        await MusicControls.next();
+        break;
+    }
   });
 
   TrackPlayer.addEventListener(Event.RemotePlay, async () => {

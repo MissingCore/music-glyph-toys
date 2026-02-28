@@ -19,6 +19,7 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   override fun getTypedExportedConstants(): Map<String, Any?> {
     val constants = HashMap<String, Any?>()
     constants["GlyphButtonEvent"] = GlyphButtonEvent.getConstants()
+    constants["MatrixAction"] = MatrixAction.getConstants()
     constants["isDeviceSupported"] = ValidationUtils.isDeviceSupported()
     return constants
   }

@@ -1,7 +1,14 @@
 import MusicGlyphToys from './MusicGlyphToys';
 
+export type { EventPayload } from './NativeMusicGlyphToys';
+
+const { GlyphButtonEvent, MatrixAction, isDeviceSupported } =
+  MusicGlyphToys.getConstants();
+
 //#region Events
-export const Event = MusicGlyphToys.getConstants().GlyphButtonEvent;
+export const Action = MatrixAction;
+
+export const Event = GlyphButtonEvent;
 type GlyphButtonEvent = (typeof Event)[keyof typeof Event];
 
 export const onMount = MusicGlyphToys.onMount;
@@ -15,4 +22,4 @@ export function triggerEvent<T extends GlyphButtonEvent>(event: T) {
 }
 //#endregion
 
-export const isSupported = MusicGlyphToys.getConstants().isDeviceSupported;
+export const isSupported = isDeviceSupported;

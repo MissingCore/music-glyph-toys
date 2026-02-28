@@ -1,8 +1,6 @@
 import * as GlyphButton from './GlyphButton';
 import MusicGlyphToys from './MusicGlyphToys';
 
-export * from './constants';
-
 export function setUpToy() {
   return MusicGlyphToys.setUpToy();
 }
