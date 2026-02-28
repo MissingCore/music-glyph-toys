@@ -1,4 +1,4 @@
-import { Directory, Paths } from 'expo-file-system/next';
+import { Directory, Paths } from 'expo-file-system';
 
 /** Internal app directory where we store images. */
 export const ImageDirectory = Paths.join(Paths.document, 'images');

@@ -1,19 +1,12 @@
-import { NativeEventEmitter } from 'react-native';
-
 import MusicGlyphToys from './MusicGlyphToys';
-import type { Event, EventPayloadByEvent } from './constants/Event';
+import type { Event } from './constants/Event';
 
 //#region Events
-const emitter = new NativeEventEmitter(MusicGlyphToys);
-
-export function addEventListener<T extends Event>(
-  event: T,
-  listener: EventPayloadByEvent[T] extends never
-    ? () => void
-    : (event: EventPayloadByEvent[T]) => void
-) {
-  return emitter.addListener(event, listener);
-}
+const onMount = MusicGlyphToys.onMount;
+const onShortPress = MusicGlyphToys.onShortPress;
+const onLongPress = MusicGlyphToys.onLongPress;
+const onTouchDown = MusicGlyphToys.onTouchDown;
+const onTouchUp = MusicGlyphToys.onTouchUp;
 
 export function triggerEvent<T extends Event>(event: T) {
   return MusicGlyphToys.testEvent(event);
@@ -22,4 +15,11 @@ export function triggerEvent<T extends Event>(event: T) {
 
 const { isDeviceSupported } = MusicGlyphToys.getConstants();
 
-export { isDeviceSupported };
+export {
+  isDeviceSupported,
+  onMount,
+  onShortPress,
+  onLongPress,
+  onTouchDown,
+  onTouchUp,
+};

@@ -1,4 +1,4 @@
-package com.cyanchill.missingcore.music.toys.model
+package com.cyanchill.missingcore.music.toys
 
 enum class GlyphButtonEvent(val code: String) {
   MOUNT("mount"),

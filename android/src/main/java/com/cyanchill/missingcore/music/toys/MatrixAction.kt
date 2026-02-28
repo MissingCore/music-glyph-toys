@@ -1,4 +1,4 @@
-package com.cyanchill.missingcore.music.toys.model
+package com.cyanchill.missingcore.music.toys
 
 enum class MatrixAction(val code: String) {
   PLAY_PAUSE("play-pause"),
