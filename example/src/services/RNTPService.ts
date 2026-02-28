@@ -12,16 +12,12 @@ import { MusicControls } from './MusicControls';
 /** How we handle the actions in the media control notification. */
 export async function PlaybackService() {
   GlyphButton.onMount(({ tag }) => {
-    console.log(
-      `[Glyph Button Event] "${GlyphButtonEvent.MOUNT}" event triggered by: "${tag}"`
-    );
+    console.log(`[MOUNT Event] Triggered by: "${tag}"`);
   });
 
   GlyphButton.onTouchUp(async ({ tag, action }) => {
     console.log(
-      `[Glyph Button Event] "${
-        GlyphButtonEvent.TOUCH_UP
-      }" event triggered by: "${tag}" with action "${String(action)}"`
+      `[TOUCH_UP Event] Triggered by: "${tag}" with action "${String(action)}"`
     );
 
     if (action === MatrixAction.PLAY_PAUSE) await MusicControls.playToggle();
