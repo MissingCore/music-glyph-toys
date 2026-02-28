@@ -1,0 +1,15 @@
+diff --git a/build/src/start/server/metro/MetroBundlerDevServer.js b/build/src/start/server/metro/MetroBundlerDevServer.js
+index ff12db2bf63605b005974645dbdbbeaa86189812..78700f7829a41128e4144a089ba39d1cbe5f45c9 100644
+--- a/build/src/start/server/metro/MetroBundlerDevServer.js
++++ b/build/src/start/server/metro/MetroBundlerDevServer.js
+@@ -675,7 +675,9 @@ class MetroBundlerDevServer extends _BundlerDevServer.BundlerDevServer {
+         };
+         // https://github.com/facebook/metro/blob/2405f2f6c37a1b641cc379b9c733b1eff0c1c2a1/packages/metro/src/lib/parseOptionsFromUrl.js#L55-L87
+         if (!opts.mainModuleName.startsWith('/') && !_path().default.isAbsolute(opts.mainModuleName)) {
+-            opts.mainModuleName = './' + opts.mainModuleName;
++            // FIXME: Hard-coded due to not working as expected in monorepo in release build.
++            opts.mainModuleName = "./example";
++            // opts.mainModuleName = './' + opts.mainModuleName;
+         }
+         const output = await this.metroLoadModuleContents(opts.mainModuleName, opts, extraOptions);
+         return {

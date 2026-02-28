@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@expo/cli':
+    hash: 3e5e09d21c5935047b7e41f56e864ccf72e2858e0b5ce840b568a610f49eb7e6
+    path: patches/@expo__cli.patch
+
 importers:
 
   .:
@@ -6349,7 +6354,7 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@expo/cli@54.0.23(expo@54.0.33(@babel/core@7.29.0)(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4))(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))':
+  '@expo/cli@54.0.23(patch_hash=3e5e09d21c5935047b7e41f56e864ccf72e2858e0b5ce840b568a610f49eb7e6)(expo@54.0.33(@babel/core@7.29.0)(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4))(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))':
     dependencies:
       '@0no-co/graphql.web': 1.2.0
       '@expo/code-signing-certificates': 0.0.6
@@ -8900,7 +8905,7 @@ snapshots:
   expo@54.0.33(@babel/core@7.29.0)(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4):
     dependencies:
       '@babel/runtime': 7.28.6
-      '@expo/cli': 54.0.23(expo@54.0.33(@babel/core@7.29.0)(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4))(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))
+      '@expo/cli': 54.0.23(patch_hash=3e5e09d21c5935047b7e41f56e864ccf72e2858e0b5ce840b568a610f49eb7e6)(expo@54.0.33(@babel/core@7.29.0)(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4))(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))
       '@expo/config': 12.0.13
       '@expo/config-plugins': 54.0.4
       '@expo/devtools': 0.1.8(react-native@0.81.6(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.1.4))(react@19.1.4)

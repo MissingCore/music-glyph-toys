@@ -156,6 +156,9 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@weights-ai/react-native-track-player"
-    ]
+    ],
+    "patchedDependencies": {
+      "@expo/cli": "patches/@expo__cli.patch"
+    }
   }
 }
