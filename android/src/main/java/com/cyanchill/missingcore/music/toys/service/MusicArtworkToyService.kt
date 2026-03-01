@@ -1,6 +1,7 @@
 package com.cyanchill.missingcore.music.toys.service
 
 import android.content.Context
+import android.os.Message
 import androidx.core.content.ContextCompat
 import com.cyanchill.missingcore.music.toys.R
 import com.cyanchill.missingcore.music.toys.GlyphButtonEvent
@@ -8,6 +9,7 @@ import com.cyanchill.missingcore.music.toys.MatrixAction
 import com.cyanchill.missingcore.music.toys.MatrixEvents
 import com.facebook.react.ReactApplication
 import com.facebook.react.bridge.ReactContext
+import com.facebook.react.util.RNLog
 import com.nothing.ketchum.GlyphMatrixFrame
 import com.nothing.ketchum.GlyphMatrixManager
 import com.nothing.ketchum.GlyphMatrixObject
@@ -78,10 +80,18 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
     displayFrame(musicIconFrame)
   }
 
-  fun setMatrixArtwork(uri: String) {
-    TODO("Not yet implemented - wait for after getting primary functionality working.")
+  override fun externalMessageHandler(msg: Message) {
+    msg.data?.let { data ->
+      if (data.containsKey(KEY_SET_ARTWORK)) {
+        val artworkUri = data.getString(KEY_SET_ARTWORK)
+        RNLog.w(reactContext, "Updating artwork with uri: $artworkUri")
+      } else {
+        RNLog.w(reactContext, "Received an unsupported message with data: ${data.toString()}")
+      }
+    }
   }
 
+  //#region [Internal Utils]
   /** Helper to create a reusable GlyphMatrixFrame from a drawable. */
   private fun createGlyphMatrixFrameFromDrawable(id: Int): GlyphMatrixFrame {
     val obj = GlyphMatrixObject.Builder().setImageSource(
@@ -101,5 +111,10 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   /** Helper to update the displayed matrix from a GlyphMatrixFrame. */
   private fun displayFrame(frame: GlyphMatrixFrame) {
     glyphMatrixManager?.setMatrixFrame(frame.render())
+  }
+  //#endregion
+
+  companion object {
+    const val KEY_SET_ARTWORK = "set-artwork"
   }
 }

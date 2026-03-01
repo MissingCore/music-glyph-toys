@@ -36,6 +36,7 @@ abstract class GlyphMatrixService(private val tag: String) : Service() {
             }
           }
         }
+        MSG_EXTERNAL -> externalMessageHandler(msg)
         else -> {
           Log.d(LOG_TAG, "Message: ${msg.what}")
           super.handleMessage(msg)
@@ -96,7 +97,12 @@ abstract class GlyphMatrixService(private val tag: String) : Service() {
   open fun onTouchPointLongPress() {}
   open fun onTouchPointReleased() {}
 
-  private companion object {
+  /** Called when Message with `MSG_EXTERNAL` is received. */
+  open fun externalMessageHandler(msg: Message) {}
+
+  companion object {
+    const val MSG_EXTERNAL = 9
+
     private val LOG_TAG = GlyphMatrixService::class.java.simpleName
     private const val KEY_DATA = "data"
   }
