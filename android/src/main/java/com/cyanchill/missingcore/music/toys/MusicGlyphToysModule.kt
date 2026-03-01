@@ -10,6 +10,8 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   NativeMusicGlyphToysSpec(reactContext) {
 
   private val context = reactContext
+  private val eventEmitter: MatrixEvents
+    get() = MatrixEvents(context)
   private var musicArtworkToyService: MusicArtworkToyService? = null
 
   override fun getTypedExportedConstants(): Map<String, Any?> {
@@ -44,28 +46,11 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   }
 
   //#region [Events]
-  /** Abstraction layer to sending events via a single handler. */
-  fun sendEvent(event: GlyphButtonEvent, tag: String, action: MatrixAction? = null) {
-    val payload = Arguments.createMap().apply {
-      putString("tag", tag)
-      putNull("action")
-    }
-    if (action != null) payload.putString("action", action.code)
-
-    when (event) {
-      GlyphButtonEvent.MOUNT -> emitOnMount(payload)
-      GlyphButtonEvent.SHORT_PRESS -> emitOnShortPress(payload)
-      GlyphButtonEvent.LONG_PRESS -> emitOnLongPress(payload)
-      GlyphButtonEvent.TOUCH_DOWN -> emitOnTouchDown(payload)
-      GlyphButtonEvent.TOUCH_UP -> emitOnTouchUp(payload)
-    }
-  }
-
   /** Help test whether the events are fired correctly. */
   override fun testEvent(event: String, tag: String?, action: String?) {
     val glyphEvent = GlyphButtonEvent.fromCode(event)
     if (glyphEvent != null) {
-      sendEvent(
+      eventEmitter.sendEvent(
         glyphEvent,
         tag ?: "testEvent()",
         MatrixAction.fromCode(action)
