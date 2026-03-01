@@ -8,6 +8,11 @@ export function setUpToy() {
   return MusicGlyphToys.setUpToy();
 }
 
+/** Cleans up the service connection when we're done using it. */
+export function onCleanUp() {
+  return MusicGlyphToys.onCleanUp();
+}
+
 /**
  * Get the Glyph Matrix to display the artwork specified by the uri.
  * @deprecated Currently unimplemented.

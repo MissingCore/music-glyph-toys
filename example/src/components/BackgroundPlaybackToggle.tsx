@@ -1,14 +1,23 @@
-import { useCallback, useState } from 'react';
+import { onCleanUp } from '@missingcore/music-glyph-toys';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
 
 import { setPlayerOptions } from '../utils/react-native-track-player';
 
 export function BackgroundPlaybackToggle() {
   const [isEnabled, setIsEnabled] = useState(true);
+  const killAppOnDismiss = useRef(false);
 
   const onChange = useCallback((value: boolean) => {
     setPlayerOptions(value);
     setIsEnabled(value);
+    killAppOnDismiss.current = !value;
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (killAppOnDismiss.current) onCleanUp();
+    };
   }, []);
 
   return (

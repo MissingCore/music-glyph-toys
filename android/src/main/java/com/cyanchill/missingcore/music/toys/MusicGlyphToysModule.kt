@@ -70,6 +70,13 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
     RNLog.w(context, "[MusicArtworkToyService] Auto-bind result in `setUpToy()`: $bound")
   }
 
+  override fun onCleanUp() {
+    // Unbind the service via JS when it's no longer needed (which will turn off the
+    // Glyph Matrix).
+    if (mService !== null) context.unbindService(connection)
+    mService = null
+  }
+
   override fun setMatrixArtwork(uri: String) {
     val msg = Message.obtain(null, GlyphMatrixService.MSG_EXTERNAL).apply {
       data = bundleOf(MusicArtworkToyService.KEY_SET_ARTWORK to uri)

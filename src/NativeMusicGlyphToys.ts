@@ -33,6 +33,7 @@ export interface Spec extends TurboModule {
   };
 
   setUpToy(): void;
+  onCleanUp(): void;
 
   setMatrixArtwork(uri: string): void;
 
