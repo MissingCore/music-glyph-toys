@@ -12,7 +12,7 @@ export function setUpToy() {
  * Get the Glyph Matrix to display the artwork specified by the uri.
  * @deprecated Currently unimplemented.
  */
-export async function setMatrixArtwork(uri: string) {
+export function setMatrixArtwork(uri: string) {
   return MusicGlyphToys.setMatrixArtwork(uri);
 }
 //#endregion
@@ -30,9 +30,7 @@ export { GlyphButtonEvent, MatrixAction };
 
 //#region Debugging
 /** @deprecated Primarily for debugging. */
-export function getDeviceInfo() {
-  return MusicGlyphToys.getDeviceInfo();
-}
+export const DeviceInfo = MusicGlyphToys.getConstants().DeviceInfo;
 
 /** Used to test the exported event listeners. */
 export function triggerEvent<T extends GlyphButtonEvent>(

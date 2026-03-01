@@ -13,9 +13,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
   - Only `onMount` & `onTouchUp` events are used.
 - Changed exports:
   - `GlyphButton.isDeviceSupported` -> `GlyphButton.isSupported`
-  - `GlyphButton.triggerEvent` -> `triggerEvent`
+  - `GlyphButton.triggerEvent()` -> `triggerEvent()`
   - `Action` -> `MatrixAction`
   - `Event` -> `GlyphButtonEvent`
+  - `getDeviceInfo()` -> `DeviceInfo`
 
 ### ⚡ Changes
 

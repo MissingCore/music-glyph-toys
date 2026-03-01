@@ -2,7 +2,6 @@ package com.cyanchill.missingcore.music.toys
 
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactContext
-import com.facebook.react.util.RNLog
 
 class MatrixEvents(reactContext: ReactContext) {
   private val mainModule = reactContext.getNativeModule(MusicGlyphToysModule.NAME) as MusicGlyphToysModule?

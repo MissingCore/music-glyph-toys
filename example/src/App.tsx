@@ -8,7 +8,7 @@ import {
 import { useSetup } from './hooks/useSetup';
 
 import { BackgroundPlaybackToggle } from './components/BackgroundPlaybackToggle';
-import { DeviceInfo } from './components/DeviceInfo';
+import { DeviceInfoBanner } from './components/DeviceInfoBanner';
 import { MediaControls } from './components/MediaControls';
 import { TrackList } from './components/TrackList';
 
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      <DeviceInfo />
+      <DeviceInfoBanner />
       <TrackList />
       <MediaControls />
       <BackgroundPlaybackToggle />

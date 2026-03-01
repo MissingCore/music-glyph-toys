@@ -14,7 +14,6 @@ import androidx.core.os.bundleOf
 import com.cyanchill.missingcore.music.toys.service.GlyphMatrixService
 import com.cyanchill.missingcore.music.toys.service.MusicArtworkToyService
 import com.facebook.react.bridge.Arguments
-import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.util.RNLog
 
@@ -50,6 +49,10 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
 
   override fun getTypedExportedConstants(): Map<String, Any?> {
     val constants = HashMap<String, Any?>()
+    constants["DeviceInfo"] = Arguments.createMap().apply {
+      putString("model", Build.MODEL)
+      putString("manufacturer", Build.MANUFACTURER)
+    }
     constants["GlyphButtonEvent"] = GlyphButtonEvent.getConstants()
     constants["MatrixAction"] = MatrixAction.getConstants()
     constants["isDeviceSupported"] = ValidationUtils.isDeviceSupported()
@@ -67,14 +70,7 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
     }
   }
 
-  override fun getDeviceInfo(promise: Promise) {
-    val deviceInfoMap = Arguments.createMap()
-    deviceInfoMap.putString("model", Build.MODEL)
-    deviceInfoMap.putString("manufacturer", Build.MANUFACTURER)
-    promise.resolve(deviceInfoMap)
-  }
-
-  override fun setMatrixArtwork(uri: String, promise: Promise) {
+  override fun setMatrixArtwork(uri: String) {
     if (ValidationUtils.isDeviceSupported()) {
       val msg = Message.obtain(
         null,
@@ -86,9 +82,6 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
       } catch (e: RemoteException) {
         RNLog.w(context, e.message ?: "Failed to run `setMatrixArtwork()`.")
       }
-      promise.resolve(true)
-    } else {
-      promise.resolve(false)
     }
   }
 

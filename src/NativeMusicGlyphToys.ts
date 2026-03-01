@@ -26,6 +26,7 @@ export type EventPayload = { tag: string; action: Action | null };
 
 export interface Spec extends TurboModule {
   readonly getConstants: () => {
+    DeviceInfo: { model: string; manufacturer: string };
     GlyphButtonEvent: GlyphButtonEventObject;
     MatrixAction: MatrixActionObject;
     isDeviceSupported: boolean;
@@ -33,9 +34,7 @@ export interface Spec extends TurboModule {
 
   setUpToy(): void;
 
-  getDeviceInfo(): Promise<{ model: string; manufacturer: string }>;
-
-  setMatrixArtwork(uri: string): Promise<boolean>;
+  setMatrixArtwork(uri: string): void;
 
   //#region Events
   testEvent(event: string, tag?: string, action?: Action): void;
