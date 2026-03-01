@@ -26,7 +26,7 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   private var waitTimerJob: Job? = null
   private var matrixAction: MatrixAction? = null
 
-  //#region React Native Turbo Module
+  //#region [React Native Turbo Module]
   private val reactContext: ReactContext?
     get() = (application as ReactApplication).reactHost?.currentReactContext
 
@@ -86,7 +86,7 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
         val artworkUri = data.getString(KEY_SET_ARTWORK)
         RNLog.w(reactContext, "Updating artwork with uri: $artworkUri")
       } else {
-        RNLog.w(reactContext, "Received an unsupported message with data: ${data.toString()}")
+        RNLog.w(reactContext, "Received an unsupported message with data: $data")
       }
     }
   }

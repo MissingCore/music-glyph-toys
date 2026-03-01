@@ -37,6 +37,11 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   }
 
   init {
+    if (!ValidationUtils.isDeviceSupported()) {
+      Log.w(NAME, "Device does not support Glyph Matrix.")
+      RNLog.w(context, "Device does not support Glyph Matrix.")
+    }
+
     // Auto-bind to service if it's already running.
     try {
       val intent = Intent(context, MusicArtworkToyService::class.java)
@@ -60,28 +65,19 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   }
 
   override fun setUpToy() {
-    if (ValidationUtils.isDeviceSupported()) {
-      val intent = Intent(context, MusicArtworkToyService::class.java)
-      val bound = context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
-      RNLog.w(context, "[MusicArtworkToyService] Auto-bind result in `setUpToy()`: $bound")
-    } else {
-      Log.w(NAME, "Device does not support Glyph Matrix.")
-      RNLog.w(context, "Device does not support Glyph Matrix.")
-    }
+    val intent = Intent(context, MusicArtworkToyService::class.java)
+    val bound = context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
+    RNLog.w(context, "[MusicArtworkToyService] Auto-bind result in `setUpToy()`: $bound")
   }
 
   override fun setMatrixArtwork(uri: String) {
-    if (ValidationUtils.isDeviceSupported()) {
-      val msg = Message.obtain(
-        null,
-        GlyphMatrixService.MSG_EXTERNAL,
-        bundleOf(MusicArtworkToyService.KEY_SET_ARTWORK to uri)
-      )
-      try {
-        mService?.send(msg)
-      } catch (e: RemoteException) {
-        RNLog.w(context, e.message ?: "Failed to run `setMatrixArtwork()`.")
-      }
+    val msg = Message.obtain(null, GlyphMatrixService.MSG_EXTERNAL).apply {
+      data = bundleOf(MusicArtworkToyService.KEY_SET_ARTWORK to uri)
+    }
+    try {
+      mService?.send(msg)
+    } catch (e: RemoteException) {
+      RNLog.w(context, e.message ?: "Failed to run `setMatrixArtwork()`.")
     }
   }
 

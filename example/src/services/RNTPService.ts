@@ -2,6 +2,7 @@ import {
   GlyphButton,
   GlyphButtonEvent,
   MatrixAction,
+  setMatrixArtwork,
   triggerEvent,
 } from '@missingcore/music-glyph-toys';
 import TrackPlayer, { Event } from '@weights-ai/react-native-track-player';
@@ -46,6 +47,7 @@ export async function PlaybackService() {
 
   TrackPlayer.addEventListener(Event.PlaybackActiveTrackChanged, async (e) => {
     dataStore.setState({ activeTrack: e.track ?? null });
+    if (e.track?.artwork) setMatrixArtwork(e.track.artwork);
     console.log('[Now Playing]', e.track?.title);
   });
 
