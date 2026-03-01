@@ -7,14 +7,10 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 
 class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
-  NativeMusicGlyphToysSpec(reactContext), MatrixEventHandler {
+  NativeMusicGlyphToysSpec(reactContext) {
 
   private val context = reactContext
   private var musicArtworkToyService: MusicArtworkToyService? = null
-
-  init {
-    MatrixEvent.handler = this
-  }
 
   override fun getTypedExportedConstants(): Map<String, Any?> {
     val constants = HashMap<String, Any?>()
@@ -26,8 +22,8 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
 
   override fun setUpToy() {
     if (ValidationUtils.isDeviceSupported()) {
-      this.musicArtworkToyService = MusicArtworkToyService()
-      musicArtworkToyService!!.createReactEventEmitter(context)
+//      this.musicArtworkToyService = MusicArtworkToyService()
+//      musicArtworkToyService!!.createReactEventEmitter(context)
     }
   }
 
@@ -49,18 +45,20 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
 
   //#region [Events]
   /** Abstraction layer to sending events via a single handler. */
-  override fun sendEvent(event: GlyphButtonEvent, tag: String, action: MatrixAction?) {
+  fun sendEvent(event: GlyphButtonEvent, tag: String, action: MatrixAction? = null) {
     val payload = Arguments.createMap().apply {
       putString("tag", tag)
       putNull("action")
     }
     if (action != null) payload.putString("action", action.code)
 
-    if (event == GlyphButtonEvent.MOUNT) emitOnMount(payload)
-    else if (event == GlyphButtonEvent.SHORT_PRESS) emitOnShortPress(payload)
-    else if (event == GlyphButtonEvent.LONG_PRESS) emitOnLongPress(payload)
-    else if (event == GlyphButtonEvent.TOUCH_DOWN) emitOnTouchDown(payload)
-    else if (event == GlyphButtonEvent.TOUCH_UP) emitOnTouchUp(payload)
+    when (event) {
+      GlyphButtonEvent.MOUNT -> emitOnMount(payload)
+      GlyphButtonEvent.SHORT_PRESS -> emitOnShortPress(payload)
+      GlyphButtonEvent.LONG_PRESS -> emitOnLongPress(payload)
+      GlyphButtonEvent.TOUCH_DOWN -> emitOnTouchDown(payload)
+      GlyphButtonEvent.TOUCH_UP -> emitOnTouchUp(payload)
+    }
   }
 
   /** Help test whether the events are fired correctly. */
