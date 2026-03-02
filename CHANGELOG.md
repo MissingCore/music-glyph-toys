@@ -7,6 +7,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 ## [Unreleased]
 
+### 🛠️ Fixes
+
+- Switch back to using a local Maven Repository for `glyph-matrix-sdk-1.0.0.aar` due to GitHub Actions throwing the `.aar` error.
+
 ## [0.2.0] - 2026-03-01
 
 ### ❗ Breaking Changes
@@ -19,6 +23,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
   - `Action` -> `MatrixAction`
   - `Event` -> `GlyphButtonEvent`
   - `getDeviceInfo()` -> `DeviceInfo`
+
+### 🎉 Added
+
+- New `onCleanUp()` function to unbind the app from the Glyph Matrix toy service.
 
 ### ⚡ Changes
 

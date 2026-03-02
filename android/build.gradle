@@ -65,9 +65,12 @@ android {
 repositories {
   google()
   mavenCentral()
+  maven {
+    url "./glyph-matrix-sdk"
+  }
 }
 
 dependencies {
   implementation "com.facebook.react:react-android"
-  implementation files("libs/glyph-matrix-sdk-1.0.0.aar")
+  implementation "com.nothing.ketchum:glyph-matrix-sdk:1.0.0"
 }
