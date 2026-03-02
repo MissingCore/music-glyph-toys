@@ -14,6 +14,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
   - `onCleanUp` -> `GlyphToy.disconnect()`
   - `setMatrixArtwork` -> `GlyphToy.setMatrixArtwork()`
 
+### 🛠️ Fixes
+
+- Types on exported event listeners in `GlyphButton` module.
+
 ## [0.2.2] - 2026-03-02
 
 ### 🛠️ Fixes
