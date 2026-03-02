@@ -7,6 +7,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 ## [Unreleased]
 
+### 🛠️ Fixes
+
+- Update indicated license in `package.json`.
+
 ## [0.2.1] - 2026-03-01
 
 ### 🛠️ Fixes
