@@ -7,6 +7,13 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 ## [Unreleased]
 
+### ❗ Breaking Changes
+
+- New `GlyphToy` module with the following exports:
+  - `setUpToy` -> `GlyphToy.connect()`
+  - `onCleanUp` -> `GlyphToy.disconnect()`
+  - `setMatrixArtwork` -> `GlyphToy.setMatrixArtwork()`
+
 ## [0.2.2] - 2026-03-02
 
 ### 🛠️ Fixes

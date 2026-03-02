@@ -1,26 +1,7 @@
 import * as GlyphButton from './GlyphButton';
+import * as GlyphToy from './GlyphToy';
 import MusicGlyphToys from './MusicGlyphToys';
 import type { EventPayload } from './NativeMusicGlyphToys';
-
-//#region Glyph Toy
-/** Create a connection to the Glyph Matrix in order for `setMatrixArtwork` to work. */
-export function setUpToy() {
-  return MusicGlyphToys.setUpToy();
-}
-
-/** Cleans up the service connection when we're done using it. */
-export function onCleanUp() {
-  return MusicGlyphToys.onCleanUp();
-}
-
-/**
- * Get the Glyph Matrix to display the artwork specified by the uri.
- * @deprecated Currently unimplemented.
- */
-export function setMatrixArtwork(uri: string) {
-  return MusicGlyphToys.setMatrixArtwork(uri);
-}
-//#endregion
 
 //#region Constants & Types
 const { GlyphButtonEvent, MatrixAction } = MusicGlyphToys.getConstants();
@@ -47,4 +28,4 @@ export function triggerEvent<T extends GlyphButtonEvent>(
 }
 //#endregion
 
-export { GlyphButton };
+export { GlyphButton, GlyphToy };

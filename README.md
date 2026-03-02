@@ -37,17 +37,6 @@ Getting the toy to work should be as follows:
 <table>
   <tbody>
     <tr>
-      <th colspan="2">Life Cycle Functions</th>
-    </tr>
-    <tr>
-      <td><code>setUpToy()</code></td>
-      <td>Create/reuse a connection to the Glyph Matrix service.</td>
-    </tr>
-    <tr>
-      <td><code>onCleanUp()</code></td>
-      <td>Unbinds the app from the Glyph Matrix service. Should be called before the app is killed.</td>
-    </tr>
-    <tr>
       <th colspan="2">GlyphButton Module</th>
     </tr>
     <tr>
@@ -62,6 +51,17 @@ Getting the toy to work should be as follows:
     <tr>
       <td><code>GlyphButton.isSupported</code></td>
       <td>Indicates if the Glyph Matrix is supported on the current device.</td>
+    </tr>
+    <tr>
+      <th colspan="2">GlyphToy Module</th>
+    </tr>
+    <tr>
+      <td><code>GlyphToy.connect()</code></td>
+      <td>Create/reuse a connection to the Glyph Toy.</td>
+    </tr>
+    <tr>
+      <td><code>GlyphToy.disconnect()</code></td>
+      <td>Disconnect from the Glyph Toy. Should be called before the app is killed.</td>
     </tr>
   </tbody>
 </table>

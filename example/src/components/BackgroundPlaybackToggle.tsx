@@ -1,4 +1,4 @@
-import { onCleanUp } from '@missingcore/music-glyph-toys';
+import { GlyphToy } from '@missingcore/music-glyph-toys';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
 
@@ -16,7 +16,7 @@ export function BackgroundPlaybackToggle() {
 
   useEffect(() => {
     return () => {
-      if (killAppOnDismiss.current) onCleanUp();
+      if (killAppOnDismiss.current) GlyphToy.disconnect();
     };
   }, []);
 

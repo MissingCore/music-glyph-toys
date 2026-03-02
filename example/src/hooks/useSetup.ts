@@ -1,4 +1,4 @@
-import { setUpToy } from '@missingcore/music-glyph-toys';
+import { GlyphToy } from '@missingcore/music-glyph-toys';
 import { usePermissions } from 'expo-media-library';
 import { useEffect, useState } from 'react';
 
@@ -22,7 +22,7 @@ export function useSetup() {
         const { canAskAgain, status } = await requestPermission();
         if (canAskAgain || status === 'denied') return;
       } else {
-        setUpToy();
+        GlyphToy.connect();
         await setupPlayer();
 
         // Start getting data after we have media library permissions.

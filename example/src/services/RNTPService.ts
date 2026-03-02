@@ -1,9 +1,8 @@
 import {
   GlyphButton,
   GlyphButtonEvent,
+  GlyphToy,
   MatrixAction,
-  setMatrixArtwork,
-  setUpToy,
   triggerEvent,
 } from '@missingcore/music-glyph-toys';
 import TrackPlayer, { Event } from '@weights-ai/react-native-track-player';
@@ -17,7 +16,7 @@ export async function PlaybackService() {
     console.log(`[MOUNT Event] Triggered by: "${tag}"`);
     // When this gets fired by the Glyph Matrix service, ensure that we have
     // a valid connection in the Turbo Module.
-    setUpToy();
+    GlyphToy.connect();
   });
 
   GlyphButton.onTouchUp(async ({ tag, action }) => {
@@ -51,7 +50,7 @@ export async function PlaybackService() {
 
   TrackPlayer.addEventListener(Event.PlaybackActiveTrackChanged, async (e) => {
     dataStore.setState({ activeTrack: e.track ?? null });
-    if (e.track?.artwork) setMatrixArtwork(e.track.artwork);
+    if (e.track?.artwork) GlyphToy.setMatrixArtwork(e.track.artwork);
     console.log('[Now Playing]', e.track?.title);
   });
 
