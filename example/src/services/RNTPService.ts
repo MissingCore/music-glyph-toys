@@ -3,6 +3,7 @@ import {
   GlyphButtonEvent,
   MatrixAction,
   setMatrixArtwork,
+  setUpToy,
   triggerEvent,
 } from '@missingcore/music-glyph-toys';
 import TrackPlayer, { Event } from '@weights-ai/react-native-track-player';
@@ -14,6 +15,9 @@ import { MusicControls } from './MusicControls';
 export async function PlaybackService() {
   GlyphButton.onMount(({ tag }) => {
     console.log(`[MOUNT Event] Triggered by: "${tag}"`);
+    // When this gets fired by the Glyph Matrix service, ensure that we have
+    // a valid connection in the Turbo Module.
+    setUpToy();
   });
 
   GlyphButton.onTouchUp(async ({ tag, action }) => {
