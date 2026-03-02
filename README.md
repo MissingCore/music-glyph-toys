@@ -1,26 +1,27 @@
 # @missingcore/music-glyph-toys
 
 > [!CAUTION]
-> This is currently experimental and probably doesn't work as we're trying to have the Glyph Toy communicate with our app, which uses React Native.
->
-> - 80% chance of showing up in the "Manage Glyph Toys" screen & displaying a music note when selected.
-> - <1% chance of working.
+> This is currently experimental, untested (as I don't own a Nothing Phone 3), and probably doesn't work as we're trying to have the Glyph Toy communicate with the MissingCore Music app, which uses React Native.
 
 ## Toy Design & Usage
 
 Given that the toy shows up on the Glyph Matrix screen, you should see a music note in the default state.
 
-Actions that can be done by this toy are handled by holding down the Glyph Button for a certain period of time and then releasing. The Glyph Matrix will change to display an icon representing the actions below:
+This toy supports interactions to mimic media controls (play/pause/skip) for the MissingCore Music app. This is done by holding down the Glyph Button for a certain period of time and then releasing. The Glyph Matrix will change to display an icon representing the actions below:
 
-- **Release in first `500ms`:** Does Nothing
-- **Release after `500ms`:** Play/Pause
-- **Release after `3.5s`:** Skip
+- **Release during first `500ms`:** Does Nothing
+- **Release after `500ms`:** Play/Pause Toggle
+- **Release after `3.5s`:** Skip To Next
 
-> **Note:** If this toy ends up working, then we'll later add some logic to display the artwork of the playing track.
+> [!IMPORTANT]
+> This toy requires the MissingCore Music app to be open in the foreground (or running in the background with the `Continue Playback on Dismiss` setting enabled) in order for the interactions to work.
+>
+> Do note that the `Continue Playback on Dismiss` will cause the following behaviors:
+>
+> - When **enabled**, stopping media playback will requiring pausing via the media notification or force-stopping the app.
+> - When **disabled**, removing the app from "Recent Tasks" will turn off the toy.
 
 ### Testing With Demo App
-
-The implementation to allow interaction with the React Native app with this toy relies on the app working "headlessly" while still listening to events emitted by the toy. Meaning this will only work when the media service still exists even after dismissing the app from "Recent Tasks" (ie: `Continue Playback on Dismiss` experimental feature enabled in MissingCore Music).
 
 The demo app can be found in this repository's [`Releases`](https://github.com/MissingCore/music-glyph-toys/releases). The app will find & save the minimum amount of metadata for the first 20 tracks found. It'll have a simple UI to select the track to be played along with play/pause/skip/prev functionalities.
 
@@ -29,19 +30,48 @@ Getting the toy to work should be as follows:
 1. Add the toy via the Glyph Toys Manager.
 2. Set this toy as active.
 3. Open the demo app (this should set up the media notification and create a link with the Glyph Toy).
-4. The actions mentioned above should work?
+4. The interactions mentioned above should work?
 
-> [!IMPORTANT]
-> Since playback will continue when you dismiss the app from "Recent Tasks", you'll need to force-stop the app (or pause the media via the notification) to stop music playback.
->
-> If you force-stop the app, then you'll need to redo the steps above to get things working again?
+## API
+
+<table>
+  <tbody>
+    <tr>
+      <th colspan="2">Life Cycle Functions</th>
+    </tr>
+    <tr>
+      <td><code>setUpToy()</code></td>
+      <td>Create/reuse a connection to the Glyph Matrix service.</td>
+    </tr>
+    <tr>
+      <td><code>onCleanUp()</code></td>
+      <td>Unbinds the app from the Glyph Matrix service. Should be called before the app is killed.</td>
+    </tr>
+    <tr>
+      <th colspan="2">GlyphButton Module</th>
+    </tr>
+    <tr>
+      <td><code>GlyphButton.onMount()</code></td>
+      <td>Called when the service is connected.</td>
+    </tr>
+    </tr>
+    <tr>
+      <td><code>GlyphButton.onTouchUp()</code></td>
+      <td>Called when a touch event on the Glyph Button is completed.</td>
+    </tr>
+    <tr>
+      <td><code>GlyphButton.isSupported</code></td>
+      <td>Indicates if the Glyph Matrix is supported on the current device.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## References
 
 - https://github.com/Nothing-Developer-Programme/GlyphMatrix-Developer-Kit
 - https://github.com/Nothing-Developer-Programme/GlyphMatrix-Example-Project
-- https://www.callstack.com/blog/sending-events-to-javascript-from-your-native-module-in-react-native
-- https://reactnative.dev/docs/legacy/native-modules-android#sending-events-to-javascript
+- https://reactnative.dev/docs/the-new-architecture/native-modules-custom-events
+- https://developer.android.com/develop/background-work/services/bound-services#Messenger
 
 ## License
 
