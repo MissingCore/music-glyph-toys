@@ -45,6 +45,8 @@ abstract class GlyphMatrixService(private val tag: String) : Service() {
     }
   }
 
+  private var wasBindedBefore: Boolean = false
+
   private val serviceMessenger = Messenger(buttonPressedHandler)
 
   var glyphMatrixManager: GlyphMatrixManager? = null
@@ -62,18 +64,26 @@ abstract class GlyphMatrixService(private val tag: String) : Service() {
     override fun onServiceDisconnected(p0: ComponentName?) {}
   }
 
-  final override fun startService(intent: Intent?): ComponentName? {
+   final override fun startService(intent: Intent?): ComponentName? {
     Log.d(LOG_TAG, "$tag: startService")
     return super.startService(intent)
   }
 
+  override fun onDestroy() {
+    Log.d(LOG_TAG, "$tag: onDestroy")
+    super.onDestroy()
+  }
+
   final override fun onBind(intent: Intent?): IBinder? {
     Log.d(LOG_TAG, "$tag: onBind")
+    Log.d(LOG_TAG, "$tag: onBind; Was Binded Before: $wasBindedBefore")
     GlyphMatrixManager.getInstance(applicationContext)?.let { gmm ->
       glyphMatrixManager = gmm
       gmm.init(gmmCallback)
       Log.d(LOG_TAG, "$tag: onBind completed")
     }
+
+    wasBindedBefore = true
     return serviceMessenger.binder
   }
 
