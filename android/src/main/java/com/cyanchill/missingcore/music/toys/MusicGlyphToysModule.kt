@@ -77,7 +77,7 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
     mService = null
   }
 
-  override fun setMatrixArtwork(uri: String) {
+  override fun setMatrixArtwork(uri: String?) {
     val msg = Message.obtain(null, GlyphMatrixService.MSG_EXTERNAL).apply {
       data = bundleOf(MusicArtworkToyService.KEY_SET_ARTWORK to uri)
     }

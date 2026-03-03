@@ -14,6 +14,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
   - `onCleanUp` -> `GlyphToy.disconnect()`
   - `setMatrixArtwork` -> `GlyphToy.setMatrixArtwork()`
 
+### ⚡ Changes
+
+- Allow `GlyphToy.setMatrixArtwork()` to accept `null` as a parameter.
+
 ### 🛠️ Fixes
 
 - Types on exported event listeners in `GlyphButton` module.

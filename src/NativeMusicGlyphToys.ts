@@ -35,7 +35,7 @@ export interface Spec extends TurboModule {
   setUpToy(): void;
   onCleanUp(): void;
 
-  setMatrixArtwork(uri: string): void;
+  setMatrixArtwork(uri: string | null): void;
 
   //#region Events
   testEvent(event: string, tag?: string, action?: Action): void;
