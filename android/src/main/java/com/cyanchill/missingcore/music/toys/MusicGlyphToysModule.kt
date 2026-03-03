@@ -137,11 +137,23 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   override fun testEvent(event: String, tag: String?, action: String?) {
     val glyphEvent = GlyphButtonEvent.fromCode(event)
     if (glyphEvent != null) {
-      eventEmitter.sendEvent(
-        glyphEvent,
-        tag ?: "testEvent()",
-        MatrixAction.fromCode(action)
-      )
+      val msg = Message.obtain(null, MessageUtils.MSG_EXTERNAL_GLYPH_ACTION).apply {
+        data = bundleOf(
+          "EVENT" to glyphEvent,
+          "TAG" to (tag ?: "testEvent()"),
+          "ACTION" to action
+        )
+      }
+      try {
+        mService?.send(msg)
+      } catch (e: RemoteException) {
+        RNLog.w(context, e.message ?: "Failed to run `testEvent()`.")
+      }
+//      eventEmitter.sendEvent(
+//        glyphEvent,
+//        tag ?: "testEvent()",
+//        MatrixAction.fromCode(action)
+//      )
     }
   }
   //#endregion

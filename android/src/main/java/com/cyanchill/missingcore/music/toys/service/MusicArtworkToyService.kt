@@ -91,6 +91,17 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
         RNLog.w(reactContext, "Updating artwork with uri: $artworkUri")
         // For debugging purposes:
         emitEvent(GlyphButtonEvent.TOUCH_UP)
+      } else if (data.containsKey("EVENT")) {
+        val msg = Message.obtain(null, MessageUtils.MSG_RECEIVE_EVENT)
+        msg.data = bundleOf(
+            "EVENT" to data.getSerializable("EVENT"),
+            "TAG" to data.getString("TAG"),
+            "ACTION" to data.getString("ACTION"),
+          )
+
+        mClients.forEach { messenger ->
+          messenger.send(msg)
+        }
       } else {
         RNLog.w(reactContext, "Received an unsupported message with data: $data")
       }
