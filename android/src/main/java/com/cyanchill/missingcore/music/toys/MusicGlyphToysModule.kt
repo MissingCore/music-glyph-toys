@@ -43,13 +43,7 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
     }
 
     // Auto-bind to service if it's already running.
-    try {
-      val intent = Intent(context, MusicArtworkToyService::class.java)
-      val bound = context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
-      RNLog.w(context, "[MusicArtworkToyService] Auto-bind result on initialization: $bound")
-    } catch (e: Exception) {
-      RNLog.w(context, "[MusicArtworkToyService] Auto-bind failed during initialization.")
-    }
+    bindToToyService("initialization")
   }
 
   override fun getTypedExportedConstants(): Map<String, Any?> {
@@ -65,9 +59,7 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   }
 
   override fun setUpToy() {
-    val intent = Intent(context, MusicArtworkToyService::class.java)
-    val bound = context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
-    RNLog.w(context, "[MusicArtworkToyService] Auto-bind result in `setUpToy()`: $bound")
+    bindToToyService("setUpToy()")
   }
 
   override fun onCleanUp() {
@@ -98,6 +90,18 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
         tag ?: "testEvent()",
         MatrixAction.fromCode(action)
       )
+    }
+  }
+  //#endregion
+
+  //#region [Internal Helpers]
+  private fun bindToToyService(tag: String) {
+    try {
+      val intent = Intent(context, MusicArtworkToyService::class.java)
+      val bound = context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
+      RNLog.w(context, "[MusicArtworkToyService] Auto-bind result during `$tag`: $bound")
+    } catch (e: Exception) {
+      RNLog.w(context, "[MusicArtworkToyService] Auto-bind failed during `$tag`.")
     }
   }
   //#endregion
