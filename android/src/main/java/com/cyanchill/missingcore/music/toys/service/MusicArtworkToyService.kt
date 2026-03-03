@@ -3,10 +3,12 @@ package com.cyanchill.missingcore.music.toys.service
 import android.content.Context
 import android.os.Message
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import com.cyanchill.missingcore.music.toys.R
 import com.cyanchill.missingcore.music.toys.GlyphButtonEvent
 import com.cyanchill.missingcore.music.toys.MatrixAction
 import com.cyanchill.missingcore.music.toys.MatrixEvents
+import com.cyanchill.missingcore.music.toys.MessageUtils
 import com.facebook.react.ReactApplication
 import com.facebook.react.bridge.ReactContext
 import com.facebook.react.util.RNLog
@@ -30,8 +32,8 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   private val reactContext: ReactContext?
     get() = (application as ReactApplication).reactHost?.currentReactContext
 
-  private val matrixEventEmitter: MatrixEvents?
-    get() = reactContext?.let { MatrixEvents(it) }
+//  private val matrixEventEmitter: MatrixEvents?
+//    get() = reactContext?.let { MatrixEvents(it) }
   //#endregion
 
   private lateinit var musicIconFrame: GlyphMatrixFrame
@@ -49,7 +51,8 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
     displayFrame(musicIconFrame)
     bgScope = CoroutineScope(Dispatchers.Default)
 
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag)
+//    matrixEventEmitter?.sendEvent(GlyphButtonEvent.MOUNT, tag)
+    emitEvent(GlyphButtonEvent.MOUNT)
   }
 
   override fun performOnServiceDisconnected(context: Context) {
@@ -73,8 +76,9 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   override fun onTouchPointReleased() {
     waitTimerJob?.cancel()
     waitTimerJob = null
-    // Notify React Native application of the action that should be done.
-    matrixEventEmitter?.sendEvent(GlyphButtonEvent.TOUCH_UP, tag, matrixAction)
+//    // Notify React Native application of the action that should be done.
+//    matrixEventEmitter?.sendEvent(GlyphButtonEvent.TOUCH_UP, tag, matrixAction)
+    emitEvent(GlyphButtonEvent.TOUCH_UP, matrixAction)
     matrixAction = null
     // Restore displayed matrix.
     displayFrame(musicIconFrame)
@@ -85,6 +89,8 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
       if (data.containsKey(KEY_SET_ARTWORK)) {
         val artworkUri = data.getString(KEY_SET_ARTWORK)
         RNLog.w(reactContext, "Updating artwork with uri: $artworkUri")
+        // For debugging purposes:
+        emitEvent(GlyphButtonEvent.TOUCH_UP)
       } else {
         RNLog.w(reactContext, "Received an unsupported message with data: $data")
       }
@@ -111,6 +117,20 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
   /** Helper to update the displayed matrix from a GlyphMatrixFrame. */
   private fun displayFrame(frame: GlyphMatrixFrame) {
     glyphMatrixManager?.setMatrixFrame(frame.render())
+  }
+
+  private fun emitEvent(event: GlyphButtonEvent, action: MatrixAction? = null) {
+    val msg = Message.obtain(null, MessageUtils.MSG_RECEIVE_EVENT).apply {
+      data = bundleOf(
+        "EVENT" to event,
+        "TAG" to tag,
+        "ACTION" to action,
+      )
+    }
+
+    mClients.forEach { messenger ->
+      messenger.send(msg)
+    }
   }
   //#endregion
 

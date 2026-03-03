@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.os.Message
 import android.os.Messenger
 import android.os.RemoteException
@@ -24,11 +26,55 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   private val eventEmitter: MatrixEvents
     get() = MatrixEvents(context)
 
+  //#region [Reply Messenger]
+  private val replyHandler = object : Handler(Looper.getMainLooper()) {
+    override fun handleMessage(msg: Message) {
+      val msgEvent = msg.data?.getSerializable("EVENT") as GlyphButtonEvent?
+      val msgTag = msg.data?.getString("TAG") ?: "Reply-Handler"
+      val msgAction = msg.data.getString("ACTION")
+
+      val eventPayload = Arguments.createMap().apply {
+        putString("tag", msgTag)
+        putNull("action")
+      }
+      if (msgAction !== null) eventPayload.putString("action", msgAction)
+
+      RNLog.w(context, "Received values: event=$msgEvent, tag=$msgTag, action=$msgAction")
+
+      when (msg.what) {
+        MessageUtils.MSG_RECEIVE_EVENT -> {
+          when (msgEvent) {
+            GlyphButtonEvent.MOUNT -> emitOnMount(eventPayload)
+            GlyphButtonEvent.TOUCH_UP -> emitOnTouchUp(eventPayload)
+            else -> {}
+          }
+        }
+        else -> {
+          Log.d(NAME, "Message: ${msg.what}")
+          super.handleMessage(msg)
+        }
+      }
+    }
+  }
+
+  private val replyMessenger = Messenger(replyHandler)
+  //#endregion
+
+
   // https://developer.android.com/develop/background-work/services/bound-services#Messenger
   private var mService: Messenger? = null
   private val connection = object : ServiceConnection {
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
       mService = Messenger(service)
+
+      try {
+        val msg = Message.obtain(null, MessageUtils.MSG_REGISTER_CLIENT).apply {
+          replyTo = replyMessenger
+        }
+        mService?.send(msg)
+      } catch (e: RemoteException) {
+        RNLog.e(context, "Failed to register replyTo.")
+      }
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
@@ -65,12 +111,18 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
   override fun onCleanUp() {
     // Unbind the service via JS when it's no longer needed (which will turn off the
     // Glyph Matrix).
-    if (mService !== null) context.unbindService(connection)
+    if (mService !== null) {
+      val msg = Message.obtain(null, MessageUtils.MSG_UNREGISTER_CLIENT).apply {
+        replyTo = replyMessenger
+      }
+      mService?.send(msg)
+      context.unbindService(connection)
+    }
     mService = null
   }
 
   override fun setMatrixArtwork(uri: String) {
-    val msg = Message.obtain(null, GlyphMatrixService.MSG_EXTERNAL).apply {
+    val msg = Message.obtain(null, MessageUtils.MSG_EXTERNAL_GLYPH_ACTION).apply {
       data = bundleOf(MusicArtworkToyService.KEY_SET_ARTWORK to uri)
     }
     try {

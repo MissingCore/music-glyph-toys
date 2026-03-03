@@ -10,6 +10,7 @@ import android.os.Looper
 import android.os.Message
 import android.os.Messenger
 import android.util.Log
+import com.cyanchill.missingcore.music.toys.MessageUtils
 import com.nothing.ketchum.Glyph
 import com.nothing.ketchum.GlyphMatrixManager
 import com.nothing.ketchum.GlyphToy
@@ -20,6 +21,9 @@ import com.nothing.ketchum.GlyphToy
  * @see <a href="https://github.com/Nothing-Developer-Programme/GlyphMatrix-Example-Project">Link</a>
  */
 abstract class GlyphMatrixService(private val tag: String) : Service() {
+
+  val mClients = ArrayList<Messenger>()
+
   private val buttonPressedHandler = object : Handler(Looper.getMainLooper()) {
     override fun handleMessage(msg: Message) {
       when (msg.what) {
@@ -36,7 +40,15 @@ abstract class GlyphMatrixService(private val tag: String) : Service() {
             }
           }
         }
-        MSG_EXTERNAL -> externalMessageHandler(msg)
+        MessageUtils.MSG_REGISTER_CLIENT -> {
+          mClients.add(msg.replyTo)
+        }
+        MessageUtils.MSG_UNREGISTER_CLIENT -> {
+          mClients.remove(msg.replyTo)
+        }
+        MessageUtils.MSG_EXTERNAL_GLYPH_ACTION -> {
+          externalMessageHandler(msg)
+        }
         else -> {
           Log.d(LOG_TAG, "Message: ${msg.what}")
           super.handleMessage(msg)
@@ -110,9 +122,7 @@ abstract class GlyphMatrixService(private val tag: String) : Service() {
   /** Called when Message with `MSG_EXTERNAL` is received. */
   open fun externalMessageHandler(msg: Message) {}
 
-  companion object {
-    const val MSG_EXTERNAL = 9
-
+  private companion object {
     private val LOG_TAG = GlyphMatrixService::class.java.simpleName
     private const val KEY_DATA = "data"
   }
