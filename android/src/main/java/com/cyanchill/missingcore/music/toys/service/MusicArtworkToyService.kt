@@ -58,6 +58,9 @@ class MusicArtworkToyService : GlyphMatrixService("Music-Artwork") {
 
   override fun onTouchPointPressed() {
     waitTimerJob?.cancel()
+    // Don't give a false impression that the interaction works when
+    // there's no associated React Context.
+    if (reactContext == null) return
     waitTimerJob = bgScope.launch {
       // Wait 500ms before allowing play/pause action to be available.
       delay(500L)
