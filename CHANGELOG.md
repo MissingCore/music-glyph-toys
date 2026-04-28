@@ -14,6 +14,7 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 ### ⚙️ Internal Changes
 
 - Upgrade example app to Expo SDK 55 & React Native 0.83.
+- Bump CI action version to use Node 24.
 
 ## [0.3.0] - 2026-03-03
 
