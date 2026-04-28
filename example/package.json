@@ -10,24 +10,24 @@
     "ios": "expo run:ios"
   },
   "dependencies": {
-    "@expo/vector-icons": "15.0.3",
+    "@expo/vector-icons": "15.1.1",
     "@missingcore/music-glyph-toys": "workspace:*",
-    "@missingcore/react-native-metadata-retriever": "2.5.0",
+    "@missingcore/react-native-metadata-retriever": "3.0.0",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@weights-ai/react-native-track-player": "github:MissingCore/react-native-track-player#74325fcbff1af92006d31791bcca493985f94550",
-    "expo": "54.0.33",
-    "expo-file-system": "19.0.21",
-    "expo-image": "3.0.11",
-    "expo-media-library": "18.2.1",
-    "expo-status-bar": "3.0.9",
-    "react": "19.1.4",
-    "react-native": "0.81.6",
+    "expo": "55.0.18",
+    "expo-file-system": "55.0.17",
+    "expo-image": "55.0.9",
+    "expo-media-library": "55.0.15",
+    "expo-status-bar": "55.0.5",
+    "react": "catalog:",
+    "react-native": "catalog:",
     "react-native-safe-area-context": "5.7.0",
-    "zustand": "5.0.11"
+    "zustand": "5.0.12"
   },
   "devDependencies": {
-    "expo-build-properties": "1.0.10",
-    "expo-dev-client": "6.0.20",
-    "react-native-builder-bob": "0.40.18"
+    "expo-build-properties": "55.0.13",
+    "expo-dev-client": "55.0.28",
+    "react-native-builder-bob": "catalog:"
   }
 }

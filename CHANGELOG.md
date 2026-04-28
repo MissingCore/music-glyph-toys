@@ -11,6 +11,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 - Don't give a false impression that the Glyph Button interaction works when there's no associated React Context available.
 
+### ⚙️ Internal Changes
+
+- Upgrade example app to Expo SDK 55 & React Native 0.83.
+
 ## [0.3.0] - 2026-03-03
 
 ### ❗ Breaking Changes
