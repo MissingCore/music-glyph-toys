@@ -1,5 +1,5 @@
-import type { AddTrack } from '@weights-ai/react-native-track-player';
-import TrackPlayer, { State } from '@weights-ai/react-native-track-player';
+import type { Track } from 'react-native-audio-browser';
+import AudioBrowser from 'react-native-audio-browser';
 
 import { dataStore } from './DataStore';
 import { getIsPlaying } from '../hooks/useIsPlaying';
@@ -8,17 +8,17 @@ export class MusicControls {
   /** Play the current track. */
   static async play() {
     await loadRNTPQueue();
-    await TrackPlayer.play();
+    AudioBrowser.play();
   }
 
   /** Pause the current playing track. */
   static async pause() {
-    await TrackPlayer.pause();
+    AudioBrowser.pause();
   }
 
   /** Stop & unload the current playing track (stops loading/buffering). */
   static async stop() {
-    await TrackPlayer.stop();
+    AudioBrowser.stop();
   }
 
   /** Toggle `isPlaying`, playing or pausing the current track. */
@@ -30,38 +30,38 @@ export class MusicControls {
   /** Play the previous track. */
   static async prev() {
     await loadRNTPQueue();
-    await TrackPlayer.skipToPrevious();
+    AudioBrowser.skipToPrevious();
   }
 
   /** Play the next track. */
   static async next() {
     await loadRNTPQueue();
-    await TrackPlayer.skipToNext();
+    AudioBrowser.skipToNext();
   }
 
   /** Skip to specific track. */
-  static async skipTo(track: AddTrack) {
+  static async skipTo(track: Track) {
     await loadRNTPQueue();
     const { tracks, activeTrack } = dataStore.getState();
     dataStore.setState({ activeTrack: track });
-    if (activeTrack?.id !== track.id) {
-      const newIndex = tracks.findIndex(({ id }) => track.id === id);
-      if (newIndex !== -1) await TrackPlayer.skip(newIndex, 0);
+    if (activeTrack?.src !== track.src) {
+      const newIndex = tracks.findIndex(({ src }) => track.src === src);
+      if (newIndex !== -1) AudioBrowser.skip(newIndex, 0);
     }
-    await TrackPlayer.play();
+    AudioBrowser.play();
   }
 
   /** Seek to a certain position in the current playing track. */
   static async seekTo(position: number) {
     await loadRNTPQueue();
-    await TrackPlayer.seekTo(position);
+    AudioBrowser.seekTo(position);
   }
 }
 
 //#region Internal Helpers
 async function isLoaded() {
   try {
-    return (await TrackPlayer.getPlaybackState()).state !== State.None;
+    return AudioBrowser.getPlayback().state !== 'none';
   } catch {
     return false;
   }
@@ -70,10 +70,10 @@ async function isLoaded() {
 async function loadRNTPQueue() {
   if (await isLoaded()) return;
   const { tracks, activeTrack } = dataStore.getState();
-  await TrackPlayer.add(tracks);
+  AudioBrowser.add(tracks);
   if (activeTrack) {
-    const trackIndex = tracks.findIndex(({ id }) => activeTrack.id === id);
-    if (trackIndex !== -1) await TrackPlayer.skip(trackIndex);
+    const trackIndex = tracks.findIndex(({ src }) => activeTrack.src === src);
+    if (trackIndex !== -1) AudioBrowser.skip(trackIndex);
   }
 }
 //#endregion

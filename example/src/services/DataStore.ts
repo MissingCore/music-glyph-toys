@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { AddTrack } from '@weights-ai/react-native-track-player';
+import type { Track } from 'react-native-audio-browser';
 import { useStore } from 'zustand';
 import { createStore } from 'zustand/vanilla';
 import {
@@ -12,8 +12,8 @@ type DataStore = {
   _hasHydrated: boolean;
   _init: (state: DataStore) => void;
 
-  tracks: AddTrack[];
-  activeTrack: AddTrack | null;
+  tracks: Track[];
+  activeTrack: Track | null;
 };
 
 const OMITTED_FIELDS = ['_hasHydrated', '_init'];

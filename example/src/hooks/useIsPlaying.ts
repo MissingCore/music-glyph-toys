@@ -1,14 +1,11 @@
-import {
-  useIsPlaying as useRNTPIsPlaying,
-  isPlaying,
-} from '@weights-ai/react-native-track-player';
+import { getPlayingState, usePlayingState } from 'react-native-audio-browser';
 import { useMemo } from 'react';
 
 export function useIsPlaying() {
-  const { playing } = useRNTPIsPlaying();
+  const { playing } = usePlayingState();
   return useMemo(() => playing ?? false, [playing]);
 }
 
 export async function getIsPlaying() {
-  return (await isPlaying()).playing ?? false;
+  return getPlayingState().playing ?? false;
 }

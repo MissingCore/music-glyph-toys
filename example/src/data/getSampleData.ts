@@ -6,6 +6,7 @@ import {
 } from '@missingcore/react-native-metadata-retriever';
 import { Directory, File } from 'expo-file-system';
 import { getAssetsAsync } from 'expo-media-library';
+import type { Track } from 'react-native-audio-browser';
 
 import { ImageDirectory } from '../utils/file-system';
 import { isFulfilled } from '../utils/promise';
@@ -16,7 +17,7 @@ export async function getSampleData() {
   const { assets } = await getAssetsAsync({ first: 20, mediaType: 'audio' });
 
   const metadataInfo = await Promise.allSettled(
-    assets.map(async ({ id, uri, duration, filename }) => {
+    assets.map(async ({ uri, duration, filename }) => {
       const t = await getMetadata(uri, MetadataPresets.minimum);
       const title = t.title?.trim() || removeFileExtension(filename);
       const artist = t.artist?.trim() || 'No Artist';
@@ -33,7 +34,7 @@ export async function getSampleData() {
         artwork = finalLocation.uri;
       }
 
-      return { id, title, artist, duration, url: uri, artwork };
+      return { title, artist, duration, src: uri, artwork } satisfies Track;
     })
   );
 

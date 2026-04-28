@@ -1,10 +1,10 @@
-import type { AddTrack } from '@weights-ai/react-native-track-player';
+import type { Track } from 'react-native-audio-browser';
 import { Image } from 'expo-image';
 import { Dimensions, Pressable, StyleSheet, View } from 'react-native';
 
 import { Text } from './UI';
 
-export function Track(props: AddTrack & { onPlay: () => void }) {
+export function Track(props: Track & { onPlay: () => void }) {
   return (
     <Pressable
       onPress={props.onPlay}

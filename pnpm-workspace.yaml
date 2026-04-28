@@ -7,3 +7,9 @@ catalog:
   react: 19.2.0
   react-native: 0.83.9
   react-native-builder-bob: 0.41.0
+
+onlyBuiltDependencies:
+  - 'react-native-audio-browser'
+
+patchedDependencies:
+  '@expo/cli': 'patches/@expo__cli.patch'

@@ -14,7 +14,6 @@
     "@missingcore/music-glyph-toys": "workspace:*",
     "@missingcore/react-native-metadata-retriever": "3.0.0",
     "@react-native-async-storage/async-storage": "2.2.0",
-    "@weights-ai/react-native-track-player": "github:MissingCore/react-native-track-player#74325fcbff1af92006d31791bcca493985f94550",
     "expo": "55.0.18",
     "expo-file-system": "55.0.17",
     "expo-image": "55.0.9",
@@ -22,6 +21,7 @@
     "expo-status-bar": "55.0.5",
     "react": "catalog:",
     "react-native": "catalog:",
+    "react-native-audio-browser": "github:MissingCore/react-native-audio-browser#09f9173290bd305fbd716de4aa1b8ce0a68e118c",
     "react-native-safe-area-context": "5.7.0",
     "zustand": "5.0.12"
   },

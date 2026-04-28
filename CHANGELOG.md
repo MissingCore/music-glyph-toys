@@ -15,6 +15,7 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 - Upgrade example app to Expo SDK 55 & React Native 0.83.
 - Bump CI action version to use Node 24.
+- Update example app to use `react-native-audio-browser`.
 
 ## [0.3.0] - 2026-03-03
 

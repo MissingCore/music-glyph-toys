@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { dataStore, useDataStore } from '../services/DataStore';
 import { getSampleData } from '../data/getSampleData';
 
+import { onAppStartUpInit } from '../initServices';
 import { createImageDirectory } from '../utils/file-system';
-import { setupPlayer } from '../utils/react-native-track-player';
 
 export function useSetup() {
   const [permissionResponse, requestPermission] = usePermissions({
@@ -23,7 +23,7 @@ export function useSetup() {
         if (canAskAgain || status === 'denied') return;
       } else {
         GlyphToy.connect();
-        await setupPlayer();
+        await onAppStartUpInit;
 
         // Start getting data after we have media library permissions.
         await dataStore.persist.rehydrate();

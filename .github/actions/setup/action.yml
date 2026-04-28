@@ -13,6 +13,11 @@ runs:
       with:
         cache: 'pnpm'
         node-version-file: .nvmrc
+    - name: Change global yarn version
+      run: |
+        corepack enable
+        corepack prepare yarn@4.13.0 --activate
+      shell: bash
 
     - name: Install dependencies
       run: pnpm i --frozen-lockfile

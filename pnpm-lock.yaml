@@ -106,9 +106,6 @@ importers:
       '@react-native-async-storage/async-storage':
         specifier: 2.2.0
         version: 2.2.0(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))
-      '@weights-ai/react-native-track-player':
-        specifier: github:MissingCore/react-native-track-player#74325fcbff1af92006d31791bcca493985f94550
-        version: https://codeload.github.com/MissingCore/react-native-track-player/tar.gz/74325fcbff1af92006d31791bcca493985f94550(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       expo:
         specifier: 55.0.18
         version: 55.0.18(@babel/core@7.29.0)(@expo/dom-webview@55.0.5)(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
@@ -130,6 +127,9 @@ importers:
       react-native:
         specifier: 'catalog:'
         version: 0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0)
+      react-native-audio-browser:
+        specifier: github:MissingCore/react-native-audio-browser#09f9173290bd305fbd716de4aa1b8ce0a68e118c
+        version: https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/09f9173290bd305fbd716de4aa1b8ce0a68e118c(react-native-nitro-modules@0.35.6(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       react-native-safe-area-context:
         specifier: 5.7.0
         version: 5.7.0(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
@@ -1833,20 +1833,6 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
-
-  '@weights-ai/react-native-track-player@https://codeload.github.com/MissingCore/react-native-track-player/tar.gz/74325fcbff1af92006d31791bcca493985f94550':
-    resolution: {tarball: https://codeload.github.com/MissingCore/react-native-track-player/tar.gz/74325fcbff1af92006d31791bcca493985f94550}
-    version: 4.1.6
-    peerDependencies:
-      react: '>=18'
-      react-native: '>=0.77'
-      react-native-windows: '>=0.77'
-      shaka-player: ^4.7.9
-    peerDependenciesMeta:
-      react-native-windows:
-        optional: true
-      shaka-player:
-        optional: true
 
   '@xmldom/xmldom@0.8.13':
     resolution: {integrity: sha512-KRYzxepc14G/CEpEGc3Yn+JKaAeT63smlDr+vjB8jRfgTBBI9wRj/nkQEO+ucV8p8I9bfKLWp37uHgFrbntPvw==}
@@ -4632,6 +4618,18 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
+  react-native-audio-browser@https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/09f9173290bd305fbd716de4aa1b8ce0a68e118c:
+    resolution: {tarball: https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/09f9173290bd305fbd716de4aa1b8ce0a68e118c}
+    version: 0.1.0
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+      react-native-nitro-modules: '*'
+      shaka-player: ^4.7.9
+    peerDependenciesMeta:
+      shaka-player:
+        optional: true
+
   react-native-builder-bob@0.41.0:
     resolution: {integrity: sha512-avuPbEUz4n4w2aCgTsOAA9JOYLXMYZSKWKf84EO0CADsbf2UWl/yXVyGgKmM9ueGThBRvKJtfMh8DLSInGZuSQ==}
     engines: {node: ^20.19.0 || ^22.12.0 || >= 23.4.0}
@@ -4645,6 +4643,12 @@ packages:
 
   react-native-monorepo-config@0.3.3:
     resolution: {integrity: sha512-d1kjHRVsbd/yVkFb5rYxWYiWVzCqJgUzcc499ejfc8jH6q6XYB4U+dNpX/HsxdXZLpzEhmKvgq0PsjRAIdAVeA==}
+
+  react-native-nitro-modules@0.35.6:
+    resolution: {integrity: sha512-3Cb7s+O5tpZ6RdIiPOB/wi3IMfBxD6tl6VDF8gJ5zvM/BEGTWxwMMLjzmWmsYPKekdbYBznF6qp2d2SxixPy8g==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
 
   react-native-safe-area-context@5.7.0:
     resolution: {integrity: sha512-/9/MtQz8ODphjsLdZ+GZAIcC/RtoqW9EeShf7Uvnfgm/pzYrJ75y3PV/J1wuAV1T5Dye5ygq4EAW20RoBq0ABQ==}
@@ -7740,11 +7744,6 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
-
-  '@weights-ai/react-native-track-player@https://codeload.github.com/MissingCore/react-native-track-player/tar.gz/74325fcbff1af92006d31791bcca493985f94550(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)':
-    dependencies:
-      react: 19.2.0
-      react-native: 0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0)
 
   '@xmldom/xmldom@0.8.13': {}
 
@@ -11066,6 +11065,12 @@ snapshots:
 
   react-is@18.3.1: {}
 
+  react-native-audio-browser@https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/09f9173290bd305fbd716de4aa1b8ce0a68e118c(react-native-nitro-modules@0.35.6(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
+    dependencies:
+      react: 19.2.0
+      react-native: 0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0)
+      react-native-nitro-modules: 0.35.6(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
+
   react-native-builder-bob@0.41.0:
     dependencies:
       '@babel/core': 7.29.0
@@ -11103,6 +11108,11 @@ snapshots:
     dependencies:
       escape-string-regexp: 5.0.0
       fast-glob: 3.3.3
+
+  react-native-nitro-modules@0.35.6(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
+    dependencies:
+      react: 19.2.0
+      react-native: 0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0)
 
   react-native-safe-area-context@5.7.0(react-native@0.83.9(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
     dependencies:
