@@ -96,7 +96,8 @@ class MusicGlyphToysModule(reactContext: ReactApplicationContext) :
       eventEmitter.sendEvent(
         glyphEvent,
         tag ?: "testEvent()",
-        MatrixAction.fromCode(action)
+        MatrixAction.fromCode(action),
+        true
       )
     }
   }

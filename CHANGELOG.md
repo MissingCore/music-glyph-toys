@@ -11,6 +11,11 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 - Don't give a false impression that the Glyph Button interaction works when there's no associated React Context available.
 
+### 🛠️ Fixes
+
+- Prevent sending events on unsupported devices.
+  - The `performOnServiceConnected` gets fired on other Nothing devices (I guess from connection signal from Glyphs?).
+
 ### ⚙️ Internal Changes
 
 - Upgrade example app to Expo SDK 55 & React Native 0.83.
