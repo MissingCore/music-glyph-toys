@@ -6,6 +6,12 @@ settings:
 
 catalogs:
   default:
+    '@react-native/babel-preset':
+      specifier: 0.83.9
+      version: 0.83.9
+    '@react-native/eslint-config':
+      specifier: 0.83.9
+      version: 0.83.9
     react:
       specifier: 19.2.0
       version: 19.2.0
@@ -4577,7 +4583,7 @@ packages:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
   react-native-audio-browser@https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/09f9173290bd305fbd716de4aa1b8ce0a68e118c:
-    resolution: {tarball: https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/09f9173290bd305fbd716de4aa1b8ce0a68e118c}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/09f9173290bd305fbd716de4aa1b8ce0a68e118c}
     version: 0.1.0
     peerDependencies:
       react: '*'
