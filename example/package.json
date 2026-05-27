@@ -14,19 +14,19 @@
     "@missingcore/music-glyph-toys": "workspace:*",
     "@missingcore/react-native-metadata-retriever": "3.0.0",
     "@react-native-async-storage/async-storage": "2.2.0",
-    "expo": "55.0.18",
-    "expo-file-system": "55.0.17",
-    "expo-image": "55.0.9",
-    "expo-media-library": "55.0.15",
-    "expo-status-bar": "55.0.5",
+    "expo": "56.0.4",
+    "expo-file-system": "56.0.7",
+    "expo-image": "56.0.9",
+    "expo-media-library": "56.0.6",
+    "expo-status-bar": "56.0.4",
     "react": "catalog:",
     "react-native": "catalog:",
-    "react-native-audio-browser": "github:MissingCore/react-native-audio-browser#09f9173290bd305fbd716de4aa1b8ce0a68e118c",
-    "react-native-safe-area-context": "5.7.0",
-    "zustand": "5.0.12"
+    "react-native-audio-browser": "github:MissingCore/react-native-audio-browser#bb9da301fdc284e144a54488c83c1af87b0ba61f",
+    "react-native-safe-area-context": "5.8.0",
+    "zustand": "5.0.13"
   },
   "devDependencies": {
-    "expo-build-properties": "55.0.13",
+    "expo-build-properties": "56.0.14",
     "react-native-builder-bob": "catalog:"
   }
 }

@@ -1,5 +1,5 @@
 import { GlyphToy } from '@missingcore/music-glyph-toys';
-import { usePermissions } from 'expo-media-library';
+import { usePermissions } from 'expo-media-library/legacy';
 import { useEffect, useState } from 'react';
 
 import { dataStore, useDataStore } from '../services/DataStore';

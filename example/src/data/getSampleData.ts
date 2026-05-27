@@ -5,7 +5,7 @@ import {
   saveArtwork,
 } from '@missingcore/react-native-metadata-retriever';
 import { Directory, File } from 'expo-file-system';
-import { getAssetsAsync } from 'expo-media-library';
+import { getAssetsAsync } from 'expo-media-library/legacy';
 import type { Track } from 'react-native-audio-browser';
 
 import { ImageDirectory } from '../utils/file-system';
@@ -30,7 +30,7 @@ export async function getSampleData() {
       // Move file to more permanent location.
       if (artworkUri) {
         const finalLocation = new File(artworkUri);
-        finalLocation.move(new Directory(ImageDirectory));
+        await finalLocation.move(new Directory(ImageDirectory));
         artwork = finalLocation.uri;
       }
 
