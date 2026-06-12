@@ -1,3 +1,12 @@
+> [!IMPORTANT]
+> This package is no longer actively maintained as we have dropped support for it in MissingCore Music. This is mainly due to a couple of issues:
+>
+> - Some Nothing Phone 3 users experience startup crashes(?) based on Android Vitals.
+> - It's pretty limited due to being unable to test what we're trying to add support for.
+> - The "main" feature only works for a single device (since we rely on the Glyph Button).
+>
+> We may resume development in the future if we have a more stable validation approach.
+
 # @missingcore/music-glyph-toys
 
 > [!CAUTION]

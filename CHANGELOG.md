@@ -11,6 +11,7 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 
 - Update to PNPM 11.
 - Upgrade example app to Expo SDK 56 / React Native 0.85.
+- Add notice of current maintenance status.
 
 ## [0.4.0] - 2026-04-28
 
