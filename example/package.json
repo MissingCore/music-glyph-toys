@@ -12,21 +12,21 @@
   "dependencies": {
     "@expo/vector-icons": "15.1.1",
     "@missingcore/music-glyph-toys": "workspace:*",
-    "@missingcore/react-native-metadata-retriever": "3.0.0",
+    "@missingcore/react-native-metadata-retriever": "3.1.0",
     "@react-native-async-storage/async-storage": "2.2.0",
-    "expo": "56.0.4",
-    "expo-file-system": "56.0.7",
-    "expo-image": "56.0.9",
-    "expo-media-library": "56.0.6",
+    "expo": "56.0.11",
+    "expo-file-system": "56.0.8",
+    "expo-image": "56.0.11",
+    "expo-media-library": "56.0.7",
     "expo-status-bar": "56.0.4",
     "react": "catalog:",
     "react-native": "catalog:",
-    "react-native-audio-browser": "github:MissingCore/react-native-audio-browser#bb9da301fdc284e144a54488c83c1af87b0ba61f",
+    "react-native-audio-browser": "github:MissingCore/react-native-audio-browser#f202a8f0acad8e1051fc70d0f31206c1851b7a8d",
     "react-native-safe-area-context": "5.8.0",
-    "zustand": "5.0.13"
+    "zustand": "5.0.14"
   },
   "devDependencies": {
-    "expo-build-properties": "56.0.14",
+    "expo-build-properties": "56.0.18",
     "react-native-builder-bob": "catalog:"
   }
 }
