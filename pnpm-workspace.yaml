@@ -16,5 +16,5 @@ catalog:
 
 allowBuilds:
   msgpackr-extract: false
-  react-native-audio-browser: true
+  react-native-audio-browser@https://codeload.github.com/MissingCore/react-native-audio-browser/tar.gz/f202a8f0acad8e1051fc70d0f31206c1851b7a8d: true
   unrs-resolver: false
